@@ -52,18 +52,30 @@ Externe Dienste sind daher nicht zulässig, sodass alle Verfahren lokal auf den 
 \begin{quote}
   \itshape Welche Methoden eignen sich, um zu einem neuen Sicherheitsrisiko
   allein anhand seiner Attribute die ähnlichsten bereits bewerteten Risiken zu
-  finden, sodass deren Kontrollfamilien mit einer belastbaren Einschätzung zur Wiederverwendung vorgeschlagen werden können?
+  finden, sodass deren Kontrollfamilien mit einer belastbaren Einschätzung zur Wiederverwendung empfohlen werden können?
 \end{quote}
 
 Hypothese: Weisen Sicherheitsrisiken in ihren relevanten Attributen ähnliche
 Werte auf, lassen sich die Kontrollfamilien bekannter Risiken auf neue, ähnliche
 Risiken übertragen.
 
-\todo{Teilfragen festlegen. Vorschlag: TF1 Attribute: Bringt eine Attriutselektion (GRANDE) gegenüber allen vorgefilterten Attributen einen Vorteil und wie stabil ist die Auswahl über die Durchgänge? TF2 Welche Methode liefert die besten Empfehlungen gegenüber der baseline? TF3 Entwurfsphase: Wie robust sind die Empfehlungen bei 20/40/60 Prozent fehlenden Attributen und ist die Confidence dabei gut kalibriert? TF4 Korrelation vs Kausalität: Inwieweit lässt sich der Zusammenhang zwischen Attributähnlichkeit und gemeinsamen Kontrollfamilien durch Störfaktoren wie Org-Einheit oder Bewerter erklären?}
+Zur Beantwortung der Forschungsfrage werden folgende Teilfragen untersucht:
+
+\begin{enumerate}
+  \item\label{tf: attribute} Verbessert eine Selektion innerhalb der vorgefilterten Attribute die Empfehlung von Kontrollfamilien und wie stabil ist die Auswahl über die Durchgänge?
+  \item\label{tf: methoden} Übertreffen die untersuchten Ähnlichkeitsverfahren ein einfaches Referenzverfahren bei der Empfehlung von Kontrollfamilien und welches Verfahren erzielt dabei die besten Ergebnisse?
+  \item\label{tf: robustheit} Wie robust sind die Empfehlungen bei fehlenden Attributen und bleibt ihre Einschätzung belastbar?
+  % \item\label{tf: kausalitaet} Bleibt der Zusammenhang zwischen Attributähnlichkeit und Kontrollfamilien bestehen, wenn Störfaktoren wie Org-Einheit oder Bewerter berücksichtigt werden?
+\end{enumerate}
 
 \section{Beitrag und Abgrenzung}
 \label{sec:beitrag}
-\todo{Beitrag: leakage-freie Pipeline mit 5 Durchgängen, Vergleich Methoden $\times$ Selektion $\times$ Maskierung. Abgrenzung: Entscheidungsunterstützung, keine Vorschrift von Kontrollen, keine Kausalaussagen, keine externen Dienste.}
+Der Beitrag dieser Arbeit ist ein systematischer Vergleich von Ähnlichkeitsverfahren zur Empfehlung von Kontrollfamilien auf realen Daten eines Security Risk Registers.
+Dazu wurde eine Evaluationspipeline entwickelt, die Attributselektionen, Ähnlichkeitsverfahren und Simulationen von Entwurfsphasen in mehreren Durchgängen anwendet und dabei ausschließt, dass Informationen aus der Testmenge in die Trainingsmenge gelangen.
+Die Ergebnisse zeigen, welche Verfahren sich eignen, wie robust sie in der Entwurfsphase sind und wie belastbar ihre Einschätzung ist.
+
+Das Verfahren dient ausschließlich als Entscheidungshilfe für Risikobewerter und soll keine Kontrollen vorschreiben.
+
 
 \section{Aufbau der Arbeit}
 \label{sec:aufbau}
