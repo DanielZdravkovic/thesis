@@ -6,7 +6,7 @@
 \section{Motivation und Kontext}
 \label{sec:motivation}
 \todo{Risk Register bei der \hsmafirma, Wiederverwendung bewerteter Risiken, Idee der Empfehlung mit Confidence.}
-Ich durfte das vergangene Jahr an der \hsmafirma im Bereich Security Risk Management hantieren.
+Im vergangenen Jahr habe ich an der \hsmafirma{} im Bereich Security Risk Management gearbeitet.
 % Ist "Qualität" hier der richtige Gedanke?
 Hier habe ich mich häufig mit der Frage beschäftigt, wie man die Arbeit der Risikobewerter unterstützen kann, um die Qualität und Konsistenz der Bewertungen zu verbessern.
 Ein Gebiet im Bewertungsprozess, in welchem ich einen Verbesserungsbedarf gesehen habe, ist die Zuordnung von Kontrollen zu Risiken.
@@ -14,12 +14,17 @@ Die Zuordnung von Kontrollen zu Risiken ist ein essentieller Prozess, welcher in
 Aktuell wird diese Zuordnung für jedes Risiko neu durchgeführt.
 Ineffizient wird dies insbesondere dann, wenn ein ähnliches Risiko bereits in der Vergangenheit bewertet wurde und die zugehörigen Kontrollen bereits bekannt sind.
 % Ist "belastbare Confidence" hier der richtige Ausdruck?
-Die zentrale Forschungsfrage dieser Arbeit war daher, ob es möglich ist, zu einem neuen Sicherheitsrisiko die ähnlichsten bereits bewerteten Risiken zu finden, sodass deren Kontrollmaßnahmen als Wiederverwendungsempfehlung mit belastbarer Confidence vorgeschlagen werden kann.
+Die zentrale Forschungsfrage dieser Arbeit war daher, ob es möglich ist, zu einem neuen Sicherheitsrisiko allein anhand seiner Attribute die ähnlichsten bereits bewerteten Risiken zu finden, sodass deren Kontrollmaßnahmen als Wiederverwendungsempfehlung mit belastbarer Confidence vorgeschlagen werden kann.
 
 \section{Problemstellung}
 \label{sec:problem}
 \todo{Ähnlichkeit nur über Attribute(Freitexte), gemischte Attribute, Multi-Label-Ziel, Long Tail Problem, keine Kategorien für die Kontrollen, unvollständige Entwürfe, Vertraulichkeit.}
-
+Mit der Forschungsfrage sind mehrere Probleme verbunden, die zu lösen sind.
+Unsere Vergleichsgrundlage sind gemischte Attribute, welche neben kategorialen und numerischen Attributen auch Freitexte enthalten.
+Die Zielgröße in der Vergleichsanalyse ist ebenfalls ein Freitextfeld, welches die Kontrollen eines Risikos enthält.
+Hinzu kommt, dass es für diese Kontrollen keine Kategorien gibt, die eine Klassifizierung der Kontrollen ermöglichen würden.
+Die Risikobewerter gehen bereits nach einem Schema für die Kontrollen vor, welches jedoch nicht in den Daten abgebildet ist und mir nicht als Datenquelle zur Verfügung steht.
+Außerdem sind in den Kontrollen zahlreiche unvollständige Einträge festzustellen, die eine Zuordnung erschweren.
 
 \section{Forschungsfrage und Hypothese}
 \label{sec:forschungsfrage}
