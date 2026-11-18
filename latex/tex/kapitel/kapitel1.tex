@@ -14,7 +14,7 @@ Ein relevanter Aspekt der Risikobewertung ist die Zuordnung von Kontrollen zu Ri
 Sie ist ein zentraler Bestandteil jeder Risikobewertung und wird derzeit für jedes neue Risiko von Grund auf durchgeführt.
 Das ist vor allem dann ineffizient, wenn ein ähnliches Risiko bereits bewertet wurde und die zugehörigen Kontrollen bekannt sind.
 
-Innerhalb dieser Arbeit will ich daher untersuchen, ob es möglich ist, zu einem neuen Sicherheitsrisiko allein anhand seiner Attribute die ähnlichsten bereits bewerteten Risiken zu finden, sodass deren Kontrollmaßnahmen als Wiederverwendungsempfehlung vorgeschlagen werden können.
+Innerhalb dieser Arbeit will ich daher untersuchen, ob es möglich ist, zu einem neuen Sicherheitsrisiko allein anhand seiner Attribute die ähnlichsten bereits bewerteten Risiken zu finden, sodass deren Kontrollfamilien als Wiederverwendungsempfehlung vorgeschlagen werden können.
 
 \section{Problemstellung}
 \label{sec:problem}
@@ -28,15 +28,15 @@ Während sich die ersten beiden Typen mit etablierten Distanzmaßen vergleichen 
 Die Kontrollen eines Risikos liegen nur als Freitext vor.
 Eine Kategorisierung, auf der eine Empfehlung aufbauen könnte, ist nicht vorhanden.
 Die Risikobewerter folgen zwar einem internen Schema, dieses ist jedoch nicht in den Daten abgebildet und steht mir als Quelle nicht zur Verfügung.
-Die Kontrollen müssen daher zunächst in eine geeignete Form gebracht werden, um sie vergleichen und wiederverwenden zu können.
+Die Kontrollen müssen daher zunächst zu Kontrollfamilien zusammengefasst werden, auf deren Ebene dann verglichen und empfohlen wird.
 
-\paragraph{Mehrere Kontrollen je Risiko:}
-Einem Risiko sind in der Regel mehrere Kontrollen zugeordnet.
-Anders als bei einer klassischen Klassifikation, bei der jedem Objekt genau eine Klasse zugeordnet wird, muss unser Verfahren eine Menge passender Kontrollen empfehlen.
+\paragraph{Mehrere Kontrollfamilien je Risiko:}
+Die Kontrollen eines Risikos verteilen sich in der Regel auf mehrere Kontrollfamilien.
+Anders als bei einer klassischen Klassifikation, bei der jedem Objekt genau eine Klasse zugeordnet wird, muss unser Verfahren eine Menge passender Kontrollfamilien empfehlen.
 
 \paragraph{Ungleiche Verteilung:}
-Die verschiedenen Kontrollen sind ungleichmäßig verteilt.
-Für seltene Kontrollmaßnahmen liegen kaum Vergleichsfälle vor, was eine belastbare Empfehlung erschwert.
+Die verschiedenen Kontrollfamilien sind ungleichmäßig verteilt.
+Für seltene Kontrollfamilien liegen kaum Vergleichsfälle vor, was eine belastbare Empfehlung erschwert.
 
 \paragraph{Unvollständige Entwürfe:}
 Eine Empfehlung ist vor allem früh im Bewertungsprozess nützlich.
@@ -46,14 +46,13 @@ In der Entwurfsphase sind jedoch viele Attribute noch nicht bekannt, sodass die 
 Die Daten, die ich für diese Arbeit verwende, sind vertraulich.
 Externe Dienste sind daher nicht zulässig, sodass alle Verfahren lokal auf den Daten ausgeführt werden müssen.
 
-
+% Einschätzung statt Confidence?
 \section{Forschungsfrage und Hypothese}
 \label{sec:forschungsfrage}
 \begin{quote}
   \itshape Welche Methoden eignen sich, um zu einem neuen Sicherheitsrisiko
   allein anhand seiner Attribute die ähnlichsten bereits bewerteten Risiken zu
-  finden, sodass deren Kontrollen als Wiederverwendungsempfehlung mit
-  belastbarer Confidence vorgeschlagen werden können?
+  finden, sodass deren Kontrollfamilien mit einer belastbaren Einschätzung zur Wiederverwendung vorgeschlagen werden können?
 \end{quote}
 
 Hypothese: Weisen Sicherheitsrisiken in ihren relevanten Attributen ähnliche
