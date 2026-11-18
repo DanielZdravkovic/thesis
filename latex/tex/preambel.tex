@@ -16,6 +16,38 @@
 \newcommand{\srcloc}{src/}
 
 
+% --- Übernommen aus dem INES-Stand (nur, was die Kapitel benötigen) ---
+
+% Definitionen (Kapitel Grundlagen)
+\usepackage{amsthm}
+\newtheorem{definition}{Definition}
+
+% Algorithmen (Kapitel Methodik)
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\floatname{algorithm}{Algorithmus}
+\renewcommand{\listalgorithmname}{Algorithmenverzeichnis}
+\renewcommand{\algorithmicrequire}{\textbf{Eingabe:}}
+\renewcommand{\algorithmicensure}{\textbf{Ausgabe:}}
+\renewcommand{\algorithmiccomment}[1]{\ensuremath{\rhd} \textit{#1}}
+\def\MYCALL#1#2{{\small\textsc{#1}}(\textup{#2})}
+\def\MYTO{\textbf{ to }}
+
+% TikZ-Bibliotheken für die Pipeline-Abbildung
+\usetikzlibrary{arrows.meta, positioning}
+
+% Sonderzeichen in Listings (pdflatex/listings kann kein Multibyte-UTF-8)
+\lstset{
+  literate={ä}{{\"a}}1 {ö}{{\"o}}1 {ü}{{\"u}}1 {Ä}{{\"A}}1 {Ö}{{\"O}}1
+           {Ü}{{\"U}}1 {ß}{{\ss}}1 {—}{{---}}1 {–}{{--}}1 {→}{{$\to$}}1 {…}{{...}}1
+}
+
+% Vor der Abgabe: \renewcommand{\todo}[2][]{}
+% (\todo stammt sonst aus todonotes/changes; hier wie bisher als roter Inline-Text)
+\renewcommand{\todo}[2][]{\textcolor{red}{\textbf{TODO:} #2}}
+\newcommand{\code}[1]{\texttt{#1}}
+
+
 % Checklisten mit zwei Ebenen
 \newlist{checklist}{itemize}{2}
 \setlist[checklist]{label=$\square$}

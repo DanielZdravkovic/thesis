@@ -1,0 +1,92 @@
+# experiment.yaml — ALLE Parameter der Pipeline (siehe docs/PIPELINE.md).
+# Relative Pfade gelten ab Repo-Wurzel.
+
+seed: 42 # Split = seed, Maskierung = seed + round, Modelle = seed
+n_rounds: 5 # Durchgänge
+k: 3 # Top-k Empfehlungen (Precision@k, Recall@k)
+
+paths:
+  risks: data/risk_item_features.parquet
+  controls: data/risk_control_links.csv
+  mappings: code/configs/mappings.yaml
+  results_dir: data/results
+
+columns:
+  id: id
+  status: riskStatus
+  links_risk_id: riskId
+  links_control: control
+
+population:
+  statuses: [Active, Closed] # riskStatus-Werte, die zur Population gehören
+
+prefilter:
+  drop_columns:
+    [created, identificationDate, submissionDate, updated, riskStatus]
+  max_missing_share: 0.95 # > Anteil fehlend -> "fast leer"
+  max_unique_share: 0.90 # > verschiedene/nicht-leere -> "fast eindeutig"
+  possible_leakage: [riskStatus, analysisMode] # nur Kennzeichnung im Report
+  # Freitext -> Kategorie (data/text_categories.py), zielgrößenfrei, auf der ganzen
+  # Population (Active + Closed, mit und ohne Controls). Leere Liste = Schritt aus.
+  text:
+    columns:
+      [
+        name,
+        condition,
+        consequence,
+        description,
+        kritisRelevancyDecision,
+        cipauRelevancyDecision,
+        assetInformation,
+      ]
+    tfidf: { min_df: 2, sublinear_tf: true, stop_words: english } # norm bleibt "l2"
+    k_range: [3, 10] # k je Feld per Silhouette (cosine), Grenzen inklusive
+    n_init: 10 # KMeans-Neustarts (fest), random_state = seed
+
+labels:
+  # Familienbildung (data/labels.py): text_cluster = Clustering der Control-Texte,
+  # prefix = Alpha-Präfix des Codes (bleibt als Option).
+  family_rule: text_cluster
+  text_cluster:
+    tfidf: {min_df: 2, sublinear_tf: true, stop_words: english}   # norm bleibt "l2"
+    k_range: [5, 15]   # k per Silhouette (cosine), Grenzen inklusive
+    n_init: 10         # KMeans-Neustarts (fest), random_state = seed
+  unmapped: unmapped
+
+# Selektor -> Parameter (Name muss im selection.REGISTRY stehen)
+selectors:
+  none: {}
+  grande:
+    top_n: 15
+    val_share: 0.2        # innerer Split NUR aus X_train/Y_train (iterstrat, seed)
+    min_positives: 5      # Familien mit weniger Positiven im Lernteil überspringen
+    grande_params:        # Keys wie im GRANDE-Beispiel
+      depth: 5
+      n_estimators: 256
+      learning_rate_weights: 0.005
+      learning_rate_index: 0.01
+      learning_rate_values: 0.01
+      learning_rate_leaf: 0.01
+      optimizer: adam
+      cosine_decay_steps: 0
+      loss: crossentropy
+      focal_loss: false
+      temperature: 0.0
+      from_logits: true
+      use_class_weights: true
+      dropout: 0.0
+      selected_variables: 0.8
+      data_subset_fraction: 1.0
+    grande_args: {epochs: 200, early_stopping_epochs: 25, batch_size: 64}
+    # random_seed (GRANDE), innerer Split und Permutation: seed
+
+# Methode -> Parameter (Name muss im methods.REGISTRY stehen)
+methods:
+  baseline: {}
+  knn_gower: { n_neighbors: 5 } # Nachbarn, die abstimmen (unabhängig von k)
+
+# Entwurfsphase: Anteil der AUSGEFÜLLTEN Test-Attribute je Risiko, der geleert wird
+mask_rates: [0.0, 0.2, 0.4, 0.6]
+
+metrics:
+  calibration_bins: 10

@@ -98,15 +98,22 @@
 \input{kapitel/glossar}
 \input{kapitel/symbole}
 
+% Algorithmenverzeichnis (zusätzlich zu den Verzeichnissen aus hma.cls)
+\listofalgorithms
+\newpage
+\setcounter{frontmatterpage}{\value{page}}
+
 \pagestyle{headings}
 
 \mainmatter
 
 %% Ihre Inhaltsdateien werden an dieser Stelle in das Dokument eingefügt
-\input{kapitel/kapitel1} % Externe Datei einbinden
-\input{kapitel/kapitel2} % Externe Datei einbinden
-\input{kapitel/kapitel3} % Externe Datei einbinden
-\input{kapitel/kapitel4} % Externe Datei einbinden
+\input{kapitel/kapitel1} % Einleitung
+\input{kapitel/kapitel2} % Grundlagen
+\input{kapitel/kapitel3} % Verwandte Arbeiten
+\input{kapitel/kapitel4} % Methodik und Umsetzung
+\input{kapitel/kapitel5} % Experimentelle Evaluation
+\input{kapitel/kapitel6} % Fazit
 \newpage
 
 %Beginn des Anhangs. Befehl \appendix nicht entfernen auch wenn kein Anhang vorhanden ist!
@@ -128,6 +135,6 @@
 \printindex
 
 % Wenn Sie keinen Anhang haben, entfernen Sie ausschließlich die nachfolgenden beiden Dateien.
-\input{kapitel/anhang-a}
-\input{kapitel/anhang-b}
+\input{kapitel/anhang-a} % Programmcode und Ressourcen
+\input{kapitel/anhang-b} % Weitere Ergebnisse
 \end{document}

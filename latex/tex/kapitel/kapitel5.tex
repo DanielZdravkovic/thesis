@@ -1,0 +1,36 @@
+% Kapitel 5 (übernommen aus 05_evaluation.tex)
+\chapter{Experimentelle Evaluation}
+\label{cha:evaluation}
+
+\section{Versuchsumgebung}
+\label{sec:setting}
+\todo{Parameter aus \code{experiment.yaml} und verwendeter Lauf.}
+
+\section{Experimente}
+\label{sec:experimente}
+\todo{Experimente den Teilfragen zuordnen, bevor die Ergebnisse vorliegen.}
+
+\section{Ergebnisse}
+\label{sec:ergebnisse}
+\begin{table}[htbp]
+  \centering
+  \caption[Vergleich der Methoden]{Methoden und Selektoren bei Maskierungsrate 0
+    (Mittelwert $\pm$ Standardabweichung über 5 Durchgänge, Platzhalter).}
+  \label{tab:ergebnisse}
+  \begin{tabular}{llccc}
+    \toprule
+    Methode & Selektor & P@3 & R@3 & ECE \\
+    \midrule
+    baseline   & none   & -- & -- & -- \\
+    knn\_gower & none   & -- & -- & -- \\
+    knn\_gower & grande & -- & -- & -- \\
+    clustering & none   & -- & -- & -- \\
+    clustering & grande & -- & -- & -- \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+\todo{Ergebnisse eintragen, Verlauf über Maskierungsraten, Signifikanz (Friedman und Wilcoxon).}
+
+\section{Diskussion}
+\label{sec:diskussion}
+\todo{Teilfragen beantworten, Validität und Grenzen.}
