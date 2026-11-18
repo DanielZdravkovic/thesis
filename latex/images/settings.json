@@ -98,3 +98,5 @@
     ],
     "latex-workshop.latex.build.forceRecipeUsage": false,
     "latex-workshop.latex.rootFile.indicator": "\\begin{document}",
+    "latex-workshop.latex.autoBuild.run": "onSave",
+    "latex-workshop.view.pdf.viewer": "tab"
