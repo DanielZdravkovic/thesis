@@ -1,0 +1,6 @@
+{
+  "files.exclude": {
+    "**/*.{aux,acn,acr,alg,bbl,bcf,blg,fdb_latexmk,fls,glg,glo,gls,glsdefs,idx,ilg,ind,ist,loa,loc,lof,lol,lot,log,out,run.xml,slg,slo,sls,soc,syg,syi,synctex.gz,toc,mw}": true,
+    "latex/tex/thesis.pdf": true
+  }
+}
