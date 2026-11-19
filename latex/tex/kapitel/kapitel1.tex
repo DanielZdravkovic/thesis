@@ -1,10 +1,8 @@
 % !TeX root = ../thesis.tex
 % Kapitel 1
-\chapter{Einleitung}
-\label{cha:einleitung}
+\chapter{Einleitung}\label{cha:einleitung}
 
-\section{Motivation und Kontext}
-\label{sec:motivation}
+\section{Motivation und Kontext}\label{sec:motivation}
 Im vergangenen Jahr habe ich bei der \hsmafirma{} mit einem Team gearbeitet, das ein Webanwendung entwickelt, welche unteranderem das Risikomanagement ermöglichen und erleichtern soll.
 Mit dieser Anwendung können Sicherheitsrisiken erfasst, bewertet und überwacht werden.
 Dabei habe ich mich häufig mit der Frage beschäftigt, wie wir Risikobewerter so unterstützen können, dass ihre Bewertungen konsistenter und effizienter werden.
@@ -16,8 +14,7 @@ Das ist vor allem dann ineffizient, wenn ein ähnliches Risiko bereits bewertet 
 
 Innerhalb dieser Arbeit will ich daher untersuchen, ob es möglich ist, zu einem neuen Sicherheitsrisiko allein anhand seiner Attribute die ähnlichsten bereits bewerteten Risiken zu finden, sodass deren Kontrollfamilien als Wiederverwendungsempfehlung vorgeschlagen werden können.
 
-\section{Problemstellung}
-\label{sec:problem}
+\section{Problemstellung}\label{sec:problem}
 Die Beantwortung dieser Forschungsfrage wird durch mehrere Eigenschaften der Daten und des Anwendungsfalls erschwert.
 
 \paragraph{Gemischte Attribute:}
@@ -47,8 +44,7 @@ Die Daten, die ich für diese Arbeit verwende, sind vertraulich.
 Externe Dienste sind daher nicht zulässig, sodass alle Verfahren lokal auf den Daten ausgeführt werden müssen.
 
 % Einschätzung statt Confidence?
-\section{Forschungsfrage und Hypothese}
-\label{sec:forschungsfrage}
+\section{Forschungsfrage und Hypothese}\label{sec:forschungsfrage}
 \begin{quote}
   \itshape Welche Methoden eignen sich, um zu einem neuen Sicherheitsrisiko
   allein anhand seiner Attribute die ähnlichsten bereits bewerteten Risiken zu
@@ -68,16 +64,14 @@ Zur Beantwortung der Forschungsfrage werden folgende Teilfragen untersucht:
   % \item\label{tf: kausalitaet} Bleibt der Zusammenhang zwischen Attributähnlichkeit und Kontrollfamilien bestehen, wenn Störfaktoren wie Org-Einheit oder Bewerter berücksichtigt werden?
 \end{enumerate}
 
-\section{Beitrag und Abgrenzung}
-\label{sec:beitrag}
+\section{Beitrag und Abgrenzung}\label{sec:beitrag}
 Der Beitrag dieser Arbeit ist ein systematischer Vergleich von Ähnlichkeitsverfahren zur Empfehlung von Kontrollfamilien auf realen Daten eines Security Risk Registers.
 Dazu wurde eine Evaluationspipeline entwickelt, die Attributselektionen, Ähnlichkeitsverfahren und Simulationen von Entwurfsphasen in mehreren Durchgängen anwendet und dabei ausschließt, dass Informationen aus der Testmenge in die Trainingsmenge gelangen.
 Die Ergebnisse zeigen, welche Verfahren sich eignen, wie robust sie in der Entwurfsphase sind und wie belastbar ihre Einschätzung ist.
 
 Das Verfahren dient ausschließlich als Entscheidungshilfe für Risikobewerter und soll keine Kontrollen vorschreiben.
 
-\section{Aufbau der Arbeit}
-\label{sec:aufbau}
+\section{Aufbau der Arbeit}\label{sec:aufbau}
 Kapitel~\ref{cha:grundlagen} liefert einen Einblick in die Risikobewertung und erläutert die Grundlagen zu Attributselektion, Ähnlichkeitsmaßen, Empfehlungsverfahren und deren Bewertung.
 Kapitel~\ref{cha:verwandt} stellt verwandte Arbeiten zu Vergleichsverfahren und Empfehlungssystemen vor.
 Dazu wird die vorliegende Arbeit in den Kontext der Forschung eingeordnet.
