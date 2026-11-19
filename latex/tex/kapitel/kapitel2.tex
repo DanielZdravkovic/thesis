@@ -4,95 +4,84 @@
 
 \section{Security Risk Management und Kontrollen}\label{sec:grundlagen-risk}
 \subsection{Risiko und Risikomanagementprozess}
-Einen allgemeinen Rahmen für den Umgang mit Risiken in Organisationen gibt die internationale Norm ISO~31000 vor\cite{iso31000}.
-Sie definiert ein \emph{Risiko} als \enquote{Auswirkung von Unischerheit auf Ziele}\cite[S.~7]{iso31000}.
-Beschrieben wird ein Risiko üblicherweise über seine Ursachen, die möglichen Ereignisse, deren Auswirkungen und die Eintrittswahrscheinlichkeit\cite[S.~7]{iso31000}.
-Darauf aufbauend versteht die Norm unter \emph{Risikomanagement} die koordinierten Aktivitäten, mit denen eine Organisation in Bezug auf Risiken gelenkt und gsteuert wird\cite[S.~7]{iso31000}.
+Einen allgemeinen Rahmen für den Umgang mit Risiken in Organisationen gibt die internationale Norm ISO~31000 vor~\cite{iso31000}.
+Sie definiert ein \emph{Risiko} als \enquote{Auswirkung von Unsicherheit auf Ziele}~\cite[S.~7]{iso31000}.
+Beschrieben wird ein Risiko üblicherweise über seine Ursachen, die möglichen Ereignisse, deren Auswirkungen und die Eintrittswahrscheinlichkeit~\cite[S.~7]{iso31000}.
+Darauf aufbauend versteht die Norm unter \emph{Risikomanagement} die koordinierten Aktivitäten, mit denen eine Organisation in Bezug auf Risiken gelenkt und gesteuert wird~\cite[S.~7]{iso31000}.
 
-Wie Risikomanagement korrekt abläuft, beschreibt die Norm als Prozess\cite[S.~16--23]{iso31000}.
+Wie Risikomanagement konkret abläuft, beschreibt die Norm als Prozess~\cite[S.~16--23]{iso31000}.
 Nach dem Festlegen von Anwendungsbereich, Kontext und Risikokriterien folgt die \emph{Risikobeurteilung}, die sich in Risikoidentifikation, Risikoanalyse und Risikobewertung gliedert.
 Anschließend werden in der \emph{Risikobehandlung} geeignete Maßnahmen ausgewählt und umgesetzt.
 Den gesamten Ablauf begleiten Kommunikation und Konsultation, Überwachung und Überprüfung sowie das Aufzeichnen und Berichten der Ergebnisse.
-Auch wenn die Schritte meist nacheinander dargestellt werden, verläuft der Prozess in der Praxis iterativ\cite[S.~17]{iso31000}.
+Auch wenn die Schritte meist nacheinander dargestellt werden, verläuft der Prozess in der Praxis iterativ~\cite[S.~17]{iso31000}.
 
 ISO~31000 ist bewusst allgemein gehalten und auf jede Art von Risiko anwendbar.
-Für den Bereich der Informationssicherheit konkretisiert die Norm ISO/IEC~27005 dieses Prozess und stimmt ihn mit den Anforderungen an ein Informationssicherheitsmanagementsystem nach ISO/IEC~27001 ab\cite[S.~7, 15]{iso27005}.
+Für den Bereich der Informationssicherheit konkretisiert die Norm ISO/IEC~27005 diesen Prozess und stimmt ihn mit den Anforderungen an ein Informationssicherheitsmanagementsystem nach ISO/IEC~27001 ab\cite[S.~7, 15]{iso27005}.
 Das Management von Informationssicherheitsrisiken nach diesem Vorgehen wird im Folgenden als \emph{Security Risk Management} bezeichnet.
 
 \subsection{Risk Register}\label{subsec:risk_register}
-Sowohl ISO~31000 als auch ISO/IEC~27001 verlangen, dass die Ergebnisse der Risikobeurteilung und -behandlung dokumentiert werden\cite[S.~23]{iso31000}\cite[S.~10-11]{iso27001}.
-ISO/IEC~27005 konkretisiert, welche Informationen dazu festgehalten werden sollten.
-
-Eine bestimmte Form der Dokumentation schreiben die Normen nicht vor.
-In der Praxis werden diese Informationen häufig in einem \emph{Risk Register} festgehalten, einem zentralen Verzeichnis, in dem Risikoinformationen über alle Prozessschritte hinweg und über die Zeit gesammelt werden\cite[S.~1]{nistir8286}.
+Sowohl ISO~31000 als auch ISO/IEC~27001 verlangen, dass die Ergebnisse der Risikobeurteilung und -behandlung dokumentiert werden~\cites[S.~23]{iso31000}[S.~10--11]{iso27001}.
+Eine bestimmte Form der Dokumentation schreiben die Normen jedoch nicht vor.
+In der Praxis werden diese Informationen häufig in einem \emph{Risk Register} festgehalten, einem zentralen Verzeichnis, in dem Risikoinformationen über alle Prozessschritte hinweg und über die Zeit gesammelt werden~\cite[S.~1]{nistir8286}.
 Jedes Risiko wird darin als Eintrag mit festen Attributen erfasst.
-Typisch sind eine Beschreibung, eine Kategorie, die Wahrscheinlichkeit und Auswirkung, die geplante Risikobehandlung, der Risikoeigentümer und der Status\cite[S.~12--13]{nistir8286}.
-Da das Register konsistent und iterativ genutzt wird und nach jeder Überprüfung ein neuer Zyklus beginnt\cite[S.~13]{nistir8286}, enthält es neben aktuellen auch bereits bewertete Risiken mit ihren Maßnahmen.
+Typisch sind eine Beschreibung, eine Kategorie, die Wahrscheinlichkeit und Auswirkung, die geplante Risikobehandlung, der Risikoeigentümer und der Status~\cite[S.~12--13]{nistir8286}.
+Da das Register konsistent und iterativ genutzt wird und nach jeder Überprüfung ein neuer Zyklus beginnt~\cites[S.~13]{nistir8286}[S.~48]{iso27005}, enthält es neben aktuellen auch bereits bewertete Risiken mit ihren Maßnahmen.
 
 \subsection{Kontrollen und Kontrollkataloge}\label{subsec:kontrollen}
 Die Maßnahmen, mit denen ein Risiko behandelt wird, werden als \emph{Kontrollen} (engl.~\emph{controls}) bezeichnet.
 ISO~31000 definiert eine Kontrolle als Maßnahme, die ein Risiko beibehält oder verändert.
-Dazu zählen Prozesse, Grundsätze, Instrumente und Verfahren ebenso wie andere Bedingungen oder Aktionen mit dieser Wirkung\cite[S.~9]{iso31000}.\footnote{Die deutschen Normfassungen übersetzen \emph{control} mit \enquote{Steuerung} bzw.~\enquote{Informationssicherheitsmaßnahme}\cite[S.~9]{iso31000}\cite[S.~18]{iso27001}. In dieser Arbeit wird der in der Praxis übliche Begriff \enquote{Kontrolle} verwendet.}
-Für jedes Risiko, das behandelt werden muss, sollten eine oder mehrere Kontrollen festgelegt werden\cite[S.~35]{iso27005}.
+Dazu zählen Prozesse, Grundsätze, Instrumente und Verfahren ebenso wie andere Bedingungen oder Aktionen mit dieser Wirkung~\cite[S.~9]{iso31000}.\footnote{Die deutschen Normfassungen übersetzen \emph{control} mit \enquote{Steuerung} bzw.~\enquote{Informationssicherheitsmaßnahme}~\cites[S.~9]{iso31000}[S.~18]{iso27001}. In dieser Arbeit wird der in der Praxis übliche Begriff \enquote{Kontrolle} verwendet.}
+Für jedes Risiko, das behandelt werden muss, sollten eine oder mehrere Kontrollen festgelegt werden~\cite[S.~35]{iso27005}.
 
 Als Orientierung dienen \emph{Kontrollkataloge}.
-ISO/IEC~27001 enthält in Anhang~A 93 Kontrollen, die in vier Themen gegliedert sind: organisatorische, personenbezogene, physische und technologische Kontrollen\cite[S.~18--26]{iso27001}.
-Organisationen müssen die von ihnen festgelegten Kontrollen mit diesem Katalog abgleichen, um sicherzustellen, dass keine notwendige Kontrolle fehlt\cite[S.~11]{iso27001}.
-Der Katalog ist jedoch nicht abschließend und Organisationen können eigene Kontrollen definieren, deren Wortlaut möglichst genau beschreiben sollte, was die Kontrolle bewirkt\cite[S.~11]{iso27001}\cite[S.~35]{iso27005}.
+ISO/IEC~27001 enthält in Anhang~A 93 Kontrollen, die in vier Themen gegliedert sind: organisatorische, personenbezogene, physische und technologische Kontrollen~\cite[S.~18--26]{iso27001}.
+Organisationen müssen die von ihnen festgelegten Kontrollen mit diesem Katalog abgleichen, um sicherzustellen, dass keine notwendige Kontrolle fehlt~\cite[S.~11]{iso27001}.
+Der Katalog ist jedoch nicht abschließend und Organisationen können eigene Kontrollen definieren, deren Wortlaut möglichst genau beschreiben sollte, was die Kontrolle bewirkt~\cites[S.~11]{iso27001}[S.~35]{iso27005}.
 
 Einen anderen Ansatz verfolgt das NIST Cybersecurity Framework~(CSF)~2.0.
-Statt einzelne Kontrollen vorzugeben, ordnet es angestrebte Cybersicherheitsergebnisse in einer festen Gliederung und verweist für deren Umsetzung auf bestehende Kontrollkataloge\cite[S.~i, 1]{nistcsf2}.
-Diese Ergebnisse sind hierarchisch in Funktionen, Kategorien und Unterkategorien gegliedert\cite[S.~3]{nistcsf2}.
-Auf oberster Ebene unterscheidet das CSF sechs Funktionen: \emph{Govern}, \emph{Identify}, \emph{Protect}, \emph{Detect}, \emph{Respond} und \emph{Recover}\cite[S.~3--4]{nistcsf2}.
-Darunter liegen 22 Kategorien wie \emph{Risk Assessment} oder \emph{Identity Management, Authentication and Access Control}\cite[S.~15]{nistcsf2}.
+Statt einzelne Kontrollen vorzugeben, ordnet es angestrebte Cybersicherheitsergebnisse in einer festen Gliederung und verweist für deren Umsetzung auf bestehende Kontrollkataloge~\cite[S.~i, 1]{nistcsf2}.
+Diese Ergebnisse sind hierarchisch in Funktionen, Kategorien und Unterkategorien gegliedert~\cite[S.~3]{nistcsf2}.
+Auf oberster Ebene unterscheidet das CSF sechs Funktionen: \emph{Govern}, \emph{Identify}, \emph{Protect}, \emph{Detect}, \emph{Respond} und \emph{Recover}~\cite[S.~3--4]{nistcsf2}.
+Darunter liegen 22 Kategorien wie \emph{Risk Assessment} oder \emph{Identity Management, Authentication and Access Control}~\cite[S.~15]{nistcsf2}.
 
 Um Risiken und Kontrollen thematisch zu ordnen, werden Kontrollen häufig zu \emph{Kontrollfamilien} zusammengefasst.
-NIST nennt als Beispiel die Kontrollfailien aus NIST SP~800~53, anhand derer sich Einträge eines Risk Registers kategorisieren lassen.
-Eine einheitliche Kategorisierung erleichtert den Vergleich von Risiken\cite[S.~12]{nistir8286}.
+NIST nennt als Beispiel die Kontrollfamilien aus NIST SP~800~53, anhand derer sich Einträge eines Risk Registers kategorisieren lassen.
+Eine einheitliche Kategorisierung erleichtert den Vergleich von Risiken~\cite[S.~12]{nistir8286}.
 
-\section{Formalisierung}
-\label{sec:formal}
-\begin{definition}[Risiko und Attribute]
-\label{def:risiko}
+\section{Formalisierung}\label{sec:formal}
+\begin{definition}[Risiko und Attribute]\label{def:risiko}
 Ein Risiko $r$ wird durch einen Attributvektor $x_r = (x_{r,1}, \ldots, x_{r,m})$
 beschrieben. Attribute können kategorial, numerisch oder fehlend sein.
 \end{definition}
 
-\begin{definition}[Kontrollfamilie]
-\label{def:familie}
+\begin{definition}[Kontrollfamilie]\label{def:familie}
 Eine Kontrollfamilie ist eine Gruppe gleichartiger Kontrollen. $F$ bezeichnet
 die Menge aller Familien. Kontrollen ohne Zuordnung gelten als
 \emph{unmapped} und zählen nie als Label.
 \end{definition}
 \todo{Bildung der Familien beschreiben, sobald entschieden.}
 
-\begin{definition}[Zielgröße]
-\label{def:ziel}
+\begin{definition}[Zielgröße]\label{def:ziel}
 Jedem bewerteten Risiko $r$ ist eine Menge $Y_r \subseteq F$ mit $|Y_r| \geq 1$
 zugeordnet (Multi-Label). Als Matrix ist $Y \in \{0,1\}^{n \times |F|}$.
 \end{definition}
 
-\begin{definition}[Empfehlung]
-\label{def:empfehlung}
+\begin{definition}[Empfehlung]\label{def:empfehlung}
 Eine Methode liefert zu einem Risiko $r$ eine nach Confidence absteigend
 sortierte Liste $\hat{R}_r = \big((f_1, c_1), \ldots, (f_k, c_k)\big)$ mit
 $f_i \in F$ und $c_i \in [0,1]$. Die Empfehlung basiert ausschließlich auf $x_r$.
 \end{definition}
 
-\section{Ähnlichkeit gemischter Attribute}
-\label{sec:aehnlichkeit}
-\todo{Gower-Distanz \cite{gower1971}, Umgang mit Fehlwerten, Alternativen.}
+\section{Ähnlichkeit gemischter Attribute}\label{sec:aehnlichkeit}
+\todo{Gower-Distanz~\cite{gower1971}, Umgang mit Fehlwerten, Alternativen.}
 
-\section{Nachbarschafts- und clusterbasierte Empfehlung}
-\label{sec:empfehlung-grundlagen}
-\todo{kNN und ML-kNN \cite{zhang2007mlknn}, Clustering kategorialer Daten \cite{huang1998kmodes}, Bezug zu CBR \cite{aamodt1994cbr}.}
+\section{Nachbarschafts- und clusterbasierte Empfehlung}\label{sec:empfehlung-grundlagen}
+\todo{kNN und ML-kNN~\cite{zhang2007mlknn}, Clustering kategorialer Daten~\cite{huang1998kmodes}, Bezug zu CBR~\cite{aamodt1994cbr}.}
 
-\section{Attributselektion}
-\label{sec:selektion-grundlagen}
-\todo{Filter/Wrapper/Embedded, GRANDE \cite{marton2024grande}, Notlösung CatBoost mit SHAP, Selektion nur auf dem Training.}
+\section{Attributselektion}\label{sec:selektion-grundlagen}
+\todo{Filter/Wrapper/Embedded, GRANDE~\cite{marton2024grande}, Notlösung CatBoost mit SHAP, Selektion nur auf dem Training.}
 
-\section{Bewertung von Empfehlungen}
-\label{sec:metriken}
+\section{Bewertung von Empfehlungen}\label{sec:metriken}
 Für ein Test-Risiko $r$ mit den Top-$k$-Familien $T_r$ gilt
 \begin{align}
   \mathrm{P@}k(r) &= \frac{|T_r \cap Y_r|}{k}, &
