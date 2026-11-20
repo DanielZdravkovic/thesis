@@ -50,27 +50,41 @@ Eine einheitliche Kategorisierung erleichtert den Vergleich von Risiken~\cite[S.
 
 \section{Formalisierung}\label{sec:formal}
 \begin{definition}[Risiko und Attribute]\label{def:risiko}
-Ein Risiko $r$ wird durch einen Attributvektor $x_r = (x_{r,1}, \ldots, x_{r,m})$
-beschrieben. Attribute können kategorial, numerisch oder fehlend sein.
+Ein Risiko $r$ wird durch ein Attributtupel
+\[
+x_r = (x_{r,1}, \ldots, x_{r,m})
+\]
+beschrieben.
+Attribute können kategorial oder nummerisch sein oder Freitexte enthalten.
+Fehlende Werte werden mit $x_{r,j} = \bot$ bezeichnet.
 \end{definition}
+Die Attribute entsprechen den Feldern eines Risk Registers (Abschnitt~\ref{subsec:risk_register}).
+Für den Vergleich von Risiken ist zu beachten, dass insbesondere in der Entwurfsphase einzelne Werte fehlen können und Freitexte zunächst in kategoriale Attribute überführt werden müssen (Kapitel~\ref{cha:methodik}).
 
 \begin{definition}[Kontrollfamilie]\label{def:familie}
-Eine Kontrollfamilie ist eine Gruppe gleichartiger Kontrollen. $F$ bezeichnet
-die Menge aller Familien. Kontrollen ohne Zuordnung gelten als
-\emph{unmapped} und zählen nie als Label.
+Eine Kontrollfamilie ist eine Gruppe thematisch gleichartiger Kontrollen.
+$F$ bezeichnet die Menge aller Familien.
 \end{definition}
-\todo{Bildung der Familien beschreiben, sobald entschieden.}
+Die Familien werden in dieser Arbeit aus den Kontrollen des untersuchten Registers abgeleitet (Kapitel~\ref{cha:methodik}).
 
 \begin{definition}[Zielgröße]\label{def:ziel}
-Jedem bewerteten Risiko $r$ ist eine Menge $Y_r \subseteq F$ mit $|Y_r| \geq 1$
-zugeordnet (Multi-Label). Als Matrix ist $Y \in \{0,1\}^{n \times |F|}$.
+Einem Risiko $r$ können Kontrollen zugeordnet sein. $Y_r \subseteq F$ bezeichnet die Menge der Kontrollfamilien, denen diese Kontrollen angehören.
+Betrachtet werden nur Risiken mit $|Y_r| \geq 1$.
+Für $n$ solcher Risiken ergibt sich die Matrix
+\[
+Y \in {\{0,1\}}^{n \times |F|}
+\]
 \end{definition}
 
 \begin{definition}[Empfehlung]\label{def:empfehlung}
-Eine Methode liefert zu einem Risiko $r$ eine nach Confidence absteigend
-sortierte Liste $\hat{R}_r = \big((f_1, c_1), \ldots, (f_k, c_k)\big)$ mit
-$f_i \in F$ und $c_i \in [0,1]$. Die Empfehlung basiert ausschließlich auf $x_r$.
+Eine Methode liefert zu einem Risiko $r$ eine nach der Einschätzung (engl.~\emph{confidence}) absteigend sortierte Liste
+\[
+\hat{R}_r = \big((f_1, c_1), \ldots, (f_k, c_k)\big)
+\]
+mit $f_i \in F$ und $c_i \in [0,1]$.
+Vom Risiko $r$ selbst werden dabei nur die Attribute $x_r$ und nicht $Y_r$ verwendet.
 \end{definition}
+Die Einschätzung $c_i$ gibt an, wie zuverlässig die Empfehlung der Familie $f_i$ eingeschätzt wird.
 
 \section{Ähnlichkeit gemischter Attribute}\label{sec:aehnlichkeit}
 \todo{Gower-Distanz~\cite{gower1971}, Umgang mit Fehlwerten, Alternativen.}
