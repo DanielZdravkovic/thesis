@@ -200,14 +200,31 @@ Eine weitere Variante ersetzt die Gower-Distanz durch die GRANDE-Modelle aus Abs
 Zwei Risiken gelten dabei als umso ähnlicher, je größer das Gewicht der Bäume ist, in denen beide im selben Blatt landen.
 
 \section{Bewertung von Empfehlungen}\label{sec:metriken}
-Für ein Test-Risiko $r$ mit den Top-$k$-Familien $T_r$ gilt
-\begin{align}
-  \mathrm{P@}k(r) &= \frac{|T_r \cap Y_r|}{k}, &
-  \mathrm{R@}k(r) &= \frac{|T_r \cap Y_r|}{|Y_r|}.
-\end{align}
-Die Kalibrierung der Confidence wird über den Expected Calibration Error mit
-$B$ gleich breiten Bins gemessen:
-\begin{equation}
-  \mathrm{ECE} = \sum_{b=1}^{B} \frac{|B_b|}{N}\,\Big|\overline{c}(B_b) - \overline{h}(B_b)\Big|
-\end{equation}
-\todo{Metriken erläutern, $k=3$ begründen, Literatur zur Kalibrierung ergänzen.}
+Zur Bewertung wird eine Empfehlung $\hat{R}_r$ (Definition~\ref{def:empfehlung}) mit den tatsächlich zugeordneten Familien $Y_r$ verglichen.
+Zum einen wird geprüft, wie viele der vorgeschlagenen Familien zutreffen.
+Zum anderen wird geprüft, ob die Einschätzungen $c_i$ der tatsächlichen Trefferquote entsprechen.
+
+Für die erste Eigenschaft werden bei Empfehlungsverfahren meist Precision und Recall über die obersten Ränge verwendet, da Nutzer in der Regel nur die ersten Vorschläge betrachten~\cite[S.~1748]{Krichene2020}.
+Precision@$k$ ist der Anteil zutreffender Familien unter den $k$ Vorschlägen, Recall@$k$ der Anteil der tatsächlichen Familien, die unter den $k$ Vorschlägen gefunden werden~\cite[S.~1749]{Krichene2020}:
+\[
+  \mathrm{P@}k(r) = \frac{|\{f_i : f_i \in Y_r\}|}{k},
+  \qquad
+  \mathrm{R@}k(r) = \frac{|\{f_i : f_i \in Y_r\}|}{|Y_r|}.
+\]
+Beide Werte werden je Risiko berechnet und anschließend über alle bewerteten Risiken gemittelt~\cite[S.~1749]{Krichene2020}.
+
+Eine Einschätzung ist gut kalibriert, wenn sie der beobachteten Häufigkeit entspricht.
+Wird etwa für viele Fälle eine Wahrscheinlichkeit von 70\,\% angegeben, sollte das Ereignis in etwa 70\,\% dieser Fälle eintreten~\cite[S.~2]{Pavlovic2025}.
+Da die Einschätzung stetig ist, lässt sich die Kalibrierung mit endlich vielen Daten nur näherungsweise messen, indem die Vorhersagen in $M$ Intervalle $B_1, \dots, B_M$ eingeteilt werden~\cite[S.~7]{Wang2025}.
+Ein verbreitetes Maß ist der erwartete Kalibrierungsfehler (engl.~\emph{expected calibration error}, ECE)~\cite[S.~5]{Pavlovic2025}.
+Er ist das gewichtete Mittel der Abstände zwischen Trefferquote und mittlerer Einschätzung je Intervall~\cites[S.~7]{Wang2025}[S.~3]{Pavlovic2025}:
+\[
+  \mathrm{ECE} = \sum_{m=1}^{M} \frac{|B_m|}{N} \, \bigl| \mathrm{acc}(B_m) - \mathrm{conf}(B_m) \bigr|.
+\]
+In dieser Arbeit ist jeder Vorschlag $(f_i, c_i)$ ein Datenpunkt, $N$ die Anzahl aller Vorschläge, $\mathrm{acc}(B_m)$ der Anteil der Vorschläge in $B_m$, deren Familie zutrifft, und $\mathrm{conf}(B_m)$ ihre mittlere Einschätzung.
+Anders als bei der klassischen ECE, die nur die höchste vorhergesagte Wahrscheinlichkeit betrachtet, gehen damit alle Vorschläge ein~\cite[S.~7]{Pavlovic2025}.
+Ergänzend zeigt ein Reliability-Diagramm je Intervall die mittlere Einschätzung gegen die Trefferquote, wobei die Diagonale perfekter Kalibrierung entspricht~\cite[S.~8]{Wang2025}.
+
+Die ECE hat zwei bekannte Schwächen.
+Erstens hängt sie von der Anzahl der Intervalle ab, da wenige Intervalle das Ergebnis verzerren und viele Intervalle nur dünn besetzt sind~\cites[S.~6]{Wang2025}[S.~6--7]{Pavlovic2025}.
+Zweitens bedeutet eine niedrige ECE keine hohe Treffsicherheit, denn ein Modell, das stets die häufigste Klasse mit deren Anteil als Wahrscheinlichkeit vorhersagt, erreicht eine ECE von 0~\cite[S.~6]{Pavlovic2025}.
