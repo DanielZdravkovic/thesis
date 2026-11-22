@@ -135,11 +135,29 @@ Mit $w_j = 1$ für alle Attribute ergibt sich die ungewichtete Form.
 Wie die Gewichte zu wählen sind, ist nicht allgemein festgelegt~\cites[S.~89]{Foss2019}[S.~3]{Velden2019}.
 Sie können sich etwa an der Wichtigkeit eines Attributs oder an seinem Zusammenhang mit einer Zielgröße orientieren~\cites[S.~3--5]{Liu2024}[S.~10]{Tarsitano2011}.
 
+\section{Attributselektion}\label{sec:selektion-grundlagen}
+Nicht alle Attribute eines Risikos tragen gleich viel zur Ähnlichkeit bei, die für eine Empfehlung von Kontrollfamilien relevant ist.
+Die Attributselektion bestimmt deshalb, welche Attribute wie stark berücksichtigt werden.
+Ihr Ergebnis sind die Gewichte $w_j$ der Gower-Distanz (Abschnitt~\ref{sec:aehnlichkeit}).
+
+Da einem Risiko mehrere Kontrollfamilien zugeordnet sein können, liegt ein Multi-Label-Problem vor.
+Der einfachste Weg, ein solches Problem zu bearbeiten, ist \emph{Binary Relevance}.
+Dabei wird die Aufgabe in unabhängige binäre Teilaufgaben zerlegt, eine je Label, und für jede Teilaufgabe wird ein eigener binärer Klassifikator trainiert~\cite[S.~191--192]{Zhang2018}.
+Der Ansatz lässt sich mit jedem binären Lernverfahren kombinieren, berücksichtigt jedoch keine Zusammenhänge zwischen den Labels~\cite[S.~191--193]{Zhang2018}.
+
+Als binärer Klassifikator dient in dieser Arbeit GRANDE (\emph{Gradient-Based Decision Tree Ensembles}).
+Baumbasierte Ensembles gelten für tabellarische Daten mit gemischten Attributtypen weiterhin als besonders leistungsfähig~\cite[S.~1]{marton2024grande}.
+GRANDE lernt ein Ensemble harter, achsenparalleler Entscheidungsbäume, deren Parameter nicht wie bei klassischem Boosting nacheinander, sondern gemeinsam per Gradientenabstieg optimiert werden~\cite[S.~1--3]{marton2024grande}.
+Zusätzlich erhält jedes Blatt eines Baums ein eigenes Gewicht, sodass einzelne Bäume sich auf bestimmte Bereiche der Daten spezialisieren können~\cite[S.~4--5]{marton2024grande}.
+
+Wie wichtig ein Attribut für ein trainiertes Modell ist, lässt sich mit der \emph{Permutation Importance} bestimmen.
+Dazu werden die Werte des Attributs in den Validierungsdaten zufällig vertauscht und der Rückgang der Vorhersagegüte gemessen, in dieser Arbeit über die Fläche unter der ROC-Kurve~\cites[S.~1341]{Altmann2010}[S.~279]{Kaneko2022}.
+Bei wenigen Datenpunkten ist das Verfahren jedoch instabil, und stark korrelierte Attribute erhalten eine zu geringe Wichtigkeit~\cite[S.~279]{Kaneko2022}.
+Entscheidend ist, dass die Selektion ausschließlich auf den Trainingsdaten erfolgt.
+Fließen die Testdaten in die Auswahl ein, fällt die anschließende Bewertung zu optimistisch aus~\cites[S.~6562]{Ambroise2002}[S.~1--2]{Varma2006}.
 \section{Nachbarschafts- und clusterbasierte Empfehlung}\label{sec:empfehlung-grundlagen}
 \todo{kNN und ML-kNN~\cite{zhang2007mlknn}, Clustering kategorialer Daten~\cite{huang1998kmodes}, Bezug zu CBR~\cite{aamodt1994cbr}.}
 
-\section{Attributselektion}\label{sec:selektion-grundlagen}
-\todo{Filter/Wrapper/Embedded, GRANDE~\cite{marton2024grande}, Notlösung CatBoost mit SHAP, Selektion nur auf dem Training.}
 
 \section{Bewertung von Empfehlungen}\label{sec:metriken}
 Für ein Test-Risiko $r$ mit den Top-$k$-Familien $T_r$ gilt
