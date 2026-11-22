@@ -87,7 +87,53 @@ Vom Risiko $r$ selbst werden dabei nur die Attribute $x_r$ und nicht $Y_r$ verwe
 Die Einschätzung $c_i$ gibt an, wie zuverlässig die Empfehlung der Familie $f_i$ eingeschätzt wird.
 
 \section{Ähnlichkeit gemischter Attribute}\label{sec:aehnlichkeit}
-\todo{Gower-Distanz~\cite{gower1971}, Umgang mit Fehlwerten, Alternativen.}
+Die meisten Distanzmaße sind entweder für ausschließlich numerische oder für ausschließlich kategoriale Daten ausgelegt~\cite[S.1--2]{Velden2019}.
+Die Attribute eines Risikos sind jedoch gemischt (Definition~\ref{def:risiko}).
+Ein naheliegender Ausweg besteht darin, alle Attribute auf einen gemeisamen Typ zu konvertieren.
+Entweder indem numerische Attribute in Klassen eingeteilt oder kategoriale Attribute numerisch kodiert werden.
+Beide Wege führen jedoch zu Informationsverlust oder lassen die Dimensionen der Daten stark ansteigen~\cites[S.~82--84]{Foss2019}[S.~7]{Tarsitano2011}.
+Stattdessen lassen sich Distanzmaße verwenden, die jeden Attributtypen passend behandeln und die Ergebnisse anschließend zusammenführen~\cite[S.~3]{Velden2019}.
+
+Das bekannteste Maß dieser Art geht auf Gower zurück und gilt als Standard für gemischte Daten~\cites[s.~3]{Velden2019}[S.~89]{Foss2019}.
+Für zwei Risiken $r$ und $s$ wird zunächst für jedes Attribut $j$ eine Einzeldistanz $d_j(r,s) \in [0,1]$ bestimmt, die vom Typ des Attributs abhängt.
+Bei kategorialen Attirbuten is sie $0$, wenn die Werte übereinstimmen und sonst $1$.
+Bei numerischen Attributen wird der Betrag der Differenz durch die Spannweite $R_j$ des Attributs geteilt:
+\[
+d_j(r,s) = \frac{|x_{r,j} - x_{s,j}|}{R_j}.
+\]
+Die Gower-Distanz ist der Mittelwert diese Einzeldistanzen,
+\[
+d(r,s) = \frac{1}{m} \sum_{j=1}^{m} d_j(r,s)
+\]
+und liegt damit zwischen $0$ und $1$~\cite[S.~4--5]{DOrazio2021}.
+
+Ordinale Attribute, deren Werte eine Reigenfolge besitzen, werden durch ihre Rangposition ersetzt und anschließend wie numerische Attribute behandelt~\cites[S.~5]{DOrazio2021}[S.~9]{Tarsitano2011}.
+Fehlt der Wert eines Attributs bei mindestens einem der beiden Risiken, wird es beim Vergleich ausgelassen.
+Mit
+\[
+\delta_j(r,s) =
+\begin{cases}
+  0 & \text{falls } x_{r,j} = \bot \text{ oder } x_{s,j} = \bot,\\
+  1 & \text{sonst}
+\end{cases}
+\]
+ergibt sich die Distanz als Mittelwert über die gemeinsam vorhandenen Attribute,
+\[
+d(r,s) = \frac{\sum_{j=1}^{m} \delta_j(r,s)\, d_j(r,s)}{\sum_{j=1}^{m} \delta_j(r,s)}
+\]
+~\cites[S.~5--6]{DOrazio2021}[S.~8]{Tarsitano2011}.
+Haben zwei Risiken kein gemeinsames Attribut, ist die Distanz nicht definiert~\cite[S.~6]{DOrazio2021}
+
+Ungewichtet tragen die Attributtypen nicht gleichmäßig zur Gesamtdistanz bei.
+Kategoriale Attribute erreichen bereits bei jeder Abweichung den Höchstwert $1$, numerische dagegen nur bei maximalem Abstand.
+Dadurch können kategoriale Attribute die Distanz dominieren~\cites[S.~7--8]{DOrazio2021}[S.~3]{Liu2024}[S.~90]{Foss2019}.
+Abhilfe schaffen Gewichte $w_j \geq 0$ je Attribut:
+\[
+  d(r,s) = \frac{\sum_{j=1}^{m} w_j\, \delta_j(r,s)\, d_j(r,s)}{\sum_{j=1}^{m} w_j\, \delta_j(r,s)}.
+\]
+Mit $w_j = 1$ für alle Attribute ergibt sich die ungewichtete Form.
+Wie die Gewichte zu wählen sind, ist nicht allgemein festgelegt~\cites[S.~89]{Foss2019}[S.~3]{Velden2019}.
+Sie können sich etwa an der Wichtigkeit eines Attributs oder an seinem Zusammenhang mit einer Zielgröße orientieren~\cites[S.~3--5]{Liu2024}[S.~10]{Tarsitano2011}.
 
 \section{Nachbarschafts- und clusterbasierte Empfehlung}\label{sec:empfehlung-grundlagen}
 \todo{kNN und ML-kNN~\cite{zhang2007mlknn}, Clustering kategorialer Daten~\cite{huang1998kmodes}, Bezug zu CBR~\cite{aamodt1994cbr}.}
