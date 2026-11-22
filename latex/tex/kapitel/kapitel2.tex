@@ -155,9 +155,49 @@ Dazu werden die Werte des Attributs in den Validierungsdaten zufällig vertausch
 Bei wenigen Datenpunkten ist das Verfahren jedoch instabil, und stark korrelierte Attribute erhalten eine zu geringe Wichtigkeit~\cite[S.~279]{Kaneko2022}.
 Entscheidend ist, dass die Selektion ausschließlich auf den Trainingsdaten erfolgt.
 Fließen die Testdaten in die Auswahl ein, fällt die anschließende Bewertung zu optimistisch aus~\cites[S.~6562]{Ambroise2002}[S.~1--2]{Varma2006}.
-\section{Nachbarschafts- und clusterbasierte Empfehlung}\label{sec:empfehlung-grundlagen}
-\todo{kNN und ML-kNN~\cite{zhang2007mlknn}, Clustering kategorialer Daten~\cite{huang1998kmodes}, Bezug zu CBR~\cite{aamodt1994cbr}.}
 
+\section{Nachbarschafts- und clusterbasierte Empfehlung}\label{sec:empfehlung-grundlagen}
+Die untersuchten Verfahren beruhen auf dem fallbasierten Schließen (engl.~\emph{case-based reasoning}).
+Dabei wird zu einer neuen Situation eine ähnliche frühere Situation herangezogen, um das neue Problem zu lösen~\cite[S.~3]{Kolodner1992}.
+Übertragen auf diese Arbeit ist ein Fall ein bereits bewertetes Risiko, dessen Kontrollfamilien die frühere Lösung bilden.
+Kolodner unterscheidet vollautomatische Systeme von Systemen, die lediglich passende Fälle abrufen und einer Person vorlegen, wobei die Entscheidung bei der Person bleibt~\cite[S.~32]{Kolodner1992}.
+Das hier untersuchte System gehört zur zweiten Art, da es Kontrollfamilien nur vorschlägt.
+Im Folgenden bezeichnet $T$ die Menge der bereits bewerteten Risiken und $d$ die gewichtete Gower-Distanz (Abschnitt~\ref{sec:aehnlichkeit}).
+
+Das einfachste Verfahren dieser Art ist die Nächste-Nachbarn-Klassifikation (kNN).
+Zu einem neuen Risiko $r$ werden die $l$ Risiken aus $T$ mit der geringsten Distanz bestimmt, die Nachbarschaft $N_l(r)$.
+Die Einschätzung einer Familie $f$ ist der Anteil der Nachbarn, denen $f$ zugeordnet ist:
+\[
+  c_f(r) = \frac{|\{s \in N_l(r) : f \in Y_s\}|}{l}.
+\]
+Empfohlen werden die Familien mit der höchsten Einschätzung (Definition~\ref{def:empfehlung}).
+Das Ergebnis hängt allerdings stark von der Größe der Nachbarschaft ab, und bei einfacher Mehrheitsentscheidung zählt jeder Nachbar gleich viel~\cite[S.~16618]{Ma2017}.
+
+Clusterbasierte Verfahren teilen die Risiken aus $T$ vorab in Gruppen ein und ordnen ein neues Risiko der nächstgelegenen Gruppe zu.
+Das bekannte k-Means beschreibt jede Gruppe durch ihren Mittelwert, der für beliebige Unähnlichkeiten jedoch nicht definiert ist~\cite[S.~171]{Schubert2019}.
+k-Medoids verwendet stattdessen den Medoid, also das Objekt einer Gruppe mit der geringsten Unähnlichkeit zu allen anderen~\cite[S.~171]{Schubert2019}.
+Dafür muss die Unähnlichkeit keine Metrik sein, sodass sich auch die Gower-Distanz verwenden lässt~\cite[S.~173]{Schubert2019}.
+Der bekannteste Algorithmus ist PAM (\emph{Partitioning Around Medoids}).
+Er wählt zunächst nacheinander die Medoide, welche die Summe der Distanzen am stärksten verringern, und tauscht anschließend so lange Medoide gegen andere Objekte, wie sich diese Summe weiter verringert~\cite[S.~173]{Schubert2019}.
+Da das globale Optimum nur mit hohem Aufwand zu finden ist, erreicht PAM ein lokales Optimum~\cite[S.~173]{Schubert2019}.
+Die Gruppen werden allein aus den Attributen gebildet, die Kontrollfamilien fließen nicht ein.
+Ein neues Risiko wird der Gruppe $C$ mit dem nächstgelegenen Medoid zugeordnet, und die Einschätzung einer Familie ist ihr Anteil unter den Mitgliedern von $C$.
+
+Die Anzahl der Gruppen $K$ muss bei k-Medoids vorgegeben werden.
+Eine Hilfe zur Wahl ist die Silhouette, die nur die Einteilung und die Distanzen zwischen den Objekten benötigt~\cite[S.~55]{Rousseeuw1987}.
+Für ein Objekt $i$ sei $a(i)$ die mittlere Distanz zu den übrigen Mitgliedern seiner Gruppe und $b(i)$ die kleinste mittlere Distanz zu den Mitgliedern einer anderen Gruppe~\cite[S.~55]{Rousseeuw1987}.
+Die Silhouette ist dann
+\[
+  s(i) = \frac{b(i) - a(i)}{\max\{a(i), b(i)\}},
+\]
+wobei Werte nahe 1 eine gute Zuordnung anzeigen~\cite[S.~56]{Rousseeuw1987}.
+Gewählt wird das $K$ mit der größten mittleren Silhouette~\cite[S.~53]{Rousseeuw1987}.
+Ein hoher Wert ist allerdings vorsichtig zu deuten, da etwa schon ein einzelner weit entfernter Ausreißer eine scheinbar starke Gruppenstruktur erzeugt~\cite[S.~60]{Rousseeuw1987}.
+
+Als Vergleichsmaßstab dient eine Baseline, die jedem neuen Risiko unabhängig von seinen Attributen die in $T$ häufigsten Familien empfiehlt.
+Die Einschätzung ist hier der Anteil der Risiken in $T$, denen die Familie zugeordnet ist.
+Eine weitere Variante ersetzt die Gower-Distanz durch die GRANDE-Modelle aus Abschnitt~\ref{sec:selektion-grundlagen}.
+Zwei Risiken gelten dabei als umso ähnlicher, je größer das Gewicht der Bäume ist, in denen beide im selben Blatt landen.
 
 \section{Bewertung von Empfehlungen}\label{sec:metriken}
 Für ein Test-Risiko $r$ mit den Top-$k$-Familien $T_r$ gilt
