@@ -1,20 +1,235 @@
 % !TeX root = ../thesis.tex
 % Kapitel 3
-\chapter{Verwandte Arbeiten}
-\label{cha:verwandt}
+\chapter{Verwandte Arbeiten}\label{cha:verwandt}
+Dieses Kapitel stellt Arbeiten vor, die sich mit maschinellem Lernen im Security Risk Management, der ähnlichkeitsbasierten Wiederverwendung von Lösungen und der automatisierten Zuordnung von Kontrollen befassen.
+Für die Recherche wurden die Anforderungen an die Arbeit zunächst in thematische Gruppen eingeteilt.
+Zu jeder Gruppe wurden Suchbegriffe formuliert, die das Thema sowohl in unterschiedlicher Tiefe als auch aus verschiedenen Richtungen abdecken.
+Gesucht wurde in Google Scholar und IEEE Xplore sowie in weiteren Fachdatenbanken, auf die über Lizenzen der Hochschule Zugriff bestand.
+Die Treffer wurden anhand ihrer Abstracts auf Relevanz geprüft, und alle Suchanfragen und Treffer wurden dokumentiert.
 
-\section{Maschinelles Lernen im Security Risk Management}
-\label{sec:rw-risk}
-\todo{Arbeiten recherchieren und einordnen.}
+\section{Maschinelles Lernen im Security Risk Management}\label{sec:rw-risk}
+Dieser Abschnitt gibt einen Überblick darüber, wie Sicherheitsrisiken bisher bewertet werden und welche Rolle maschinelles Lernen dabei spielt.
+Betrachtet werden zunächst klassische, expertenbasierte Verfahren und anschließend ML-basierte Ansätze für strukturierte Daten und für Texte.
+Zum Schluss werden die Herausforderungen zusammengefasst, die in diesen Arbeiten genannt werden.
 
-\section{Ähnlichkeitsbasierte Wiederverwendung}
-\label{sec:rw-reuse}
-\todo{CBR \cite{aamodt1994cbr}, Empfehlungssysteme als Analogie.}
+Verfahren zur Bewertung von Risiken der Informationssicherheit werden üblicherweise in quantitative, qualitative und hybride Verfahren eingeteilt~\cite[S.~15]{ShameliSendi2016}.
+Quantitative Verfahren drücken Risiken in Zahlen wie Geldbeträgen oder Wahrscheinlichkeiten aus und benötigen dafür detaillierte Informationen, etwa den Wert der Assets und ausreichend historische Daten zu Sicherheitsvorfällen~\cite[S.~20]{ShameliSendi2016}.
+Da diese Informationen nur mit hohem Aufwand an Zeit, Geld und Personal zu beschaffen sind, lässt sich der Ansatz in vielen Organisationen schwer umsetzen~\cite[S.~20]{ShameliSendi2016}.
+Am weitesten verbreitet sind qualitative Verfahren, die Wahrscheinlichkeit und Auswirkung in wenigen Stufen wie niedrig, mittel und hoch bewerten~\cite[S.~20]{ShameliSendi2016}.
+Sie sind einfacher anzuwenden, beruhen jedoch auf dem Wissen und der Erfahrung der Beteiligten und sind dadurch subjektiver und fehleranfälliger~\cite[S.~20]{ShameliSendi2016}.
+Hybride Verfahren verbinden beide Ansätze, indem sie die Einfachheit und Geschwindigkeit qualitativer Bewertungen nutzen und kritische Assets quantitativ bewerten~\cite[S.~20]{ShameliSendi2016}.
+Viele etablierte Methoden beschreiben zudem vor allem allgemeine Grundsätze und lassen offen, wie sie im Einzelnen umzusetzen sind~\cite[S.~15]{ShameliSendi2016}.
+Auch Rahmenwerke wie OCTAVE oder COBIT unterstützen Organisationen in erster Linie dabei, Risiken manuell zu identifizieren und zu behandeln, während automatisierte Entscheidungsunterstützung bislang wenig erforscht ist~\cite[S.~2553]{Bettaieb2020}.
 
-\section{Automatisierte Zuordnung von Kontrollen}
-\label{sec:rw-controls}
-\todo{Mindestens 3--5 eng verwandte Arbeiten.}
+Ein Beispiel für ein expertenbasiertes, hybrides Verfahren ist der Ansatz von Lo und Chen~\cite[S.~247]{Lo2012}.
+Die Autoren begründen den Einsatz qualitativer Bewertungen damit, dass der Wert eines Informationssystems schwer zu bestimmen ist und statistische Daten fehlen~\cite[S.~247]{Lo2012}.
+Um die Subjektivität dieser Bewertungen zu verringern, setzen sie Fuzzy-Methoden ein, wobei die Ergebnisse weiterhin vom Urteil der Analysten abhängen~\cite[S.~247--248]{Lo2012}.
+Als Bewertungskriterien dienen nicht die 133 einzelnen Kontrollen der ISO/IEC 27001, sondern die 17 Kontrollfamilien des NIST, da eine Bewertung über alle einzelnen Kontrollen für Analysten zu aufwendig wäre~\cite[S.~248--249]{Lo2012}.
+Kontrollen werden hier also bereits zu Familien zusammengefasst, um die Zahl der Kriterien handhabbar zu halten.
+Da diese Familien nicht unabhängig voneinander sind, werden ihre Wechselwirkungen mit DEMATEL und ANP erfasst, und die Einschätzungen mehrerer Experten werden mit einem gewichteten Mittelungsoperator (FLQ-MEOWA) zusammengeführt~\cite[S.~248]{Lo2012}.
+Das Ergebnis sind Risikostufen der Informationssysteme und Prioritäten für Schutzmaßnahmen, erprobt an einer Zweigstelle einer Krankenversicherung in Taiwan~\cite[S.~247, 254]{Lo2012}.
 
-\section{Einordnung der eigenen Arbeit}
-\label{sec:rw-abgrenzung}
-\todo{Vergleichstabelle und Abgrenzung.}
+Einen Überblick über den Einsatz von maschinellem Lernen im Risikomanagement von Informationssystemen geben Laghnimi et al.\ in einem systematischen Review von 250 Artikeln~\cite[S.~1]{Laghnimi2026}.
+Am häufigsten behandeln die Arbeiten unbefugten Zugriff, Datenlecks und Schadsoftware~\cite[S.~1]{Laghnimi2026}.
+Im Vordergrund steht dabei die Erkennung von Bedrohungen, etwa durch Anomalieerkennung bei Anmeldeversuchen oder durch die Klassifikation von Datenflüssen~\cite[S.~8]{Laghnimi2026}.
+Am häufigsten eingesetzt werden Entscheidungsbäume einschließlich Random Forest, gefolgt von der logistischen Regression~\cite[S.~5]{Laghnimi2026}.
+Die Autoren führen dies darauf zurück, dass Interpretierbarkeit und einfache Umsetzung für Praktiker in sensiblen Bereichen wie dem Finanzwesen zentral sind~\cite[S.~5, 8]{Laghnimi2026}.
+Für schwer interpretierbare Modelle werden ergänzend Erklärverfahren wie SHAP oder LIME eingesetzt~\cite[S.~5]{Laghnimi2026}.
+
+Ein Beispiel für eine ML-gestützte Risikobewertung ist die Methodik CIRA für das industrielle Internet der Dinge~\cite[S.~77001]{Abbas2025}.
+Sie gliedert sich in vier Phasen, in denen zunächst Assets, Schwachstellen und Bedrohungen erfasst, anschließend Risiken mit ML-Modellen vorhergesagt und priorisiert, die Ergebnisse aufbereitet und zuletzt Sicherheitskontrollen festgelegt werden~\cite[S.~77005]{Abbas2025}.
+Verglichen werden zentrale Modelle wie XGBoost, das wegen seiner Eignung für unausgewogene Daten gewählt wurde, sowie föderierte Varianten~\cite[S.~77001, 77005]{Abbas2025}.
+Auf einem synthetischen Datensatz erreichen die Modelle eine Genauigkeit von 98 bis 99\,\%~\cite[S.~77001]{Abbas2025}.
+Das maschinelle Lernen dient dabei der Vorhersage und Priorisierung von Risiken, während Gegenmaßnahmen erst in der letzten Phase je Bedrohung festgelegt werden~\cite[S.~77005, 77014]{Abbas2025}.
+
+Neben strukturierten Daten wird maschinelles Lernen auch auf Texte angewendet, da Risiken häufig in unstrukturierten Dokumenten beschrieben sind~\cite[S.~1706]{Ahmed2026}.
+Ahmed et al.\ untersuchen in einem systematischen Review den Einsatz von Natural Language Processing (NLP) zur Klassifikation von Sicherheitsrisiken in Texten und werten dafür neun Studien aus~\cite[S.~1705, 1711]{Ahmed2026}.
+Ältere Arbeiten nutzen klassische Verfahren wie Naive Bayes oder Support Vector Machines auf TF-IDF-Vektoren, neuere zunehmend Deep-Learning-Modelle wie LSTM und BERT~\cite[S.~1709--1710]{Ahmed2026}.
+Eine der Arbeiten nutzt Wortvektoren, um die Ähnlichkeit von Risiken über 70 Verkehrsprojekte hinweg zu bestimmen~\cite[S.~1709]{Ahmed2026}.
+Zudem beobachten die Autoren einen Trend zu durchgängigen Systemen, die Risiken nicht nur klassifizieren, sondern auch ihren Schweregrad bewerten und priorisierte Empfehlungen erzeugen~\cite[S.~1710]{Ahmed2026}.
+Als Herausforderungen nennen sie die geringe Interpretierbarkeit tiefer Modelle und den Mangel an sicherheitsspezifischen Trainingsdaten~\cite[S.~1711]{Ahmed2026}.
+Sie empfehlen, NLP mit strukturierten Sicherheitsdaten zu verbinden und zur Unterstützung der menschlichen Analyse statt als eigenständige Lösung einzusetzen~\cite[S.~1711]{Ahmed2026}.
+
+Über die einzelnen Arbeiten hinweg zeigen sich wiederkehrende Herausforderungen.
+Risikodaten sind häufig unstrukturiert, unvollständig oder stark unausgewogen, da es nur wenige Beispiele tatsächlicher Vorfälle gibt~\cite[S.~5]{Laghnimi2026}.
+Hinzu kommt, dass sich die Studien in Daten, Validierung und Metriken unterscheiden und gute Ergebnisse auf Benchmark-Daten keine Übertragbarkeit auf andere Organisationen belegen~\cite[S.~9--10]{Laghnimi2026}.
+Laghnimi et al.\ fordern deshalb, maschinelles Lernen stärker mit konkreten Entscheidungen des Risikomanagements zu verbinden und zu prüfen, wie die Ergebnisse Priorisierung, Maßnahmen und Monitoring unterstützen~\cite[S.~10]{Laghnimi2026}.
+Arbeiten, die die Zuordnung von Kontrollen zu Risiken untersuchen, werden in Abschnitt~\ref{sec:rw-controls} vorgestellt.
+
+\section{Ähnlichkeitsbasierte Wiederverwendung}\label{sec:rw-reuse}
+Dieser Abschnitt stellt Arbeiten vor, die bereits bewertete Fälle über ihre Ähnlichkeit für neue Fälle nutzbar machen.
+Zunächst werden Stärken und Grenzen des fallbasierten Schließens beschrieben, anschließend drei Anwendungen aus der Abschlussprüfung, der Informationssicherheit und dem Risikomanagement von Großprojekten.
+
+Der Grundgedanke des fallbasierten Schließens wurde bereits in Abschnitt~\ref{sec:empfehlung-grundlagen} eingeführt.
+Beim Abruf werden die Merkmale eines neuen Falls genutzt, um passende Fälle aus der Fallbasis zu finden, aus denen anschließend der einzelne beste Fall oder eine kleine Menge der vielversprechendsten ausgewählt wird~\cite[S.~22]{Kolodner1992}.
+Ein Vorteil des Ansatzes ist, dass sich schnell Lösungsvorschläge erzeugen lassen, ohne aufwendige Berechnungen und Schlussfolgerungen jedes Mal neu durchzuführen~\cite[S.~29]{Kolodner1992}.
+Zudem lassen sich auch in Bereichen Lösungen vorschlagen, die nicht vollständig verstanden sind, indem auf das zurückgegriffen wird, was sich in früheren Fällen bewährt hat~\cite[S.~29]{Kolodner1992}.
+Werden neue Fälle in die Fallbasis aufgenommen, lernt das System zudem aus Erfahrung~\cite[S.~6]{Kolodner1992}.
+Als Gefahr nennt Kolodner, dass alte Fälle ungeprüft übernommen werden oder die Lösung eines neuen Problems zu stark beeinflussen~\cite[S.~30]{Kolodner1992}.
+Sie sieht deshalb eine wichtige Anwendung in Systemen zur Entscheidungsunterstützung, die passende Fälle bereitstellen und dem Menschen die Entscheidung überlassen~\cite[S.~30, 32]{Kolodner1992}.
+Auch Bettaieb et al.\ schlagen fallbasiertes Schließen als Ergänzung für Sicherheitskontrollen vor, die für klassische Lernverfahren zu selten in den Daten vorkommen~\cite[S.~2552, 2577]{Bettaieb2020}.
+
+Ein frühes Beispiel für fallbasiertes Schließen auf tabellarischen Attributen ist das System CRAS-CBR zur Bewertung des Kontrollrisikos in der Abschlussprüfung~\cite[S.~22]{Hwang2004}.
+Ausgangspunkt ist, dass diese Bewertung bislang vor allem auf dem Urteil und der Erfahrung der Prüfer beruht~\cite[S.~22]{Hwang2004}.
+Jeder Fall wird durch Kontrollrisikofaktoren auf einer Fünferskala beschrieben, und der ähnlichste Fall wird über eine gewichtete euklidische Distanz bestimmt~\cite[S.~27]{Hwang2004}.
+Die Autoren betonen, dass klassische Nächste-Nachbarn-Verfahren alle Attribute gleich behandeln, die Gewichtung das Ergebnis jedoch direkt beeinflusst~\cite[S.~28]{Hwang2004}.
+Die Gewichte werden deshalb mit dem Analytic Hierarchy Process (AHP) aus den Einschätzungen von fünf Prüfern mit mehr als zehn Jahren Erfahrung abgeleitet~\cite[S.~28]{Hwang2004}.
+Für einen neuen Fall wird die Kontrollrisikostufe des ähnlichsten Falls übernommen~\cite[S.~29]{Hwang2004}.
+Im Mittel über zehn Testmengen erreicht CRAS-CBR eine Trefferquote von 90,31\,\%, gegenüber 86,58\,\% für eine multiple Diskriminanzanalyse und 83,94\,\% für Prüfer~\cite[S.~29]{Hwang2004}.
+Die Autoren sehen das System als unterstützendes Werkzeug für Prüfer, weisen jedoch darauf hin, dass die Ergebnisse auf einer kleinen Stichprobe beruhen und nur als Hinweis zu verstehen sind~\cite[S.~30]{Hwang2004}.
+
+Im Bereich der Informationssicherheit nutzen Jung und Lee fallbasiertes Schließen, um Sicherheitsanforderungen gegen Advanced Persistent Threats (APTs) zu empfehlen~\cite[S.~1]{Jung2023}.
+Sie begründen dies damit, dass viele Arbeiten die Erkennung und Abwehr solcher Angriffe untersuchen, aber nur wenige die Prävention über Sicherheitsanforderungen~\cite[S.~1]{Jung2023}.
+Angriffsszenarien werden über Vorlagen in ihre Elemente zerlegt und als Fälle in einer Ontologie abgelegt~\cite[S.~1]{Jung2023}.
+Die Ähnlichkeit zweier Fälle wird zunächst über die Jaccard-Ähnlichkeit der eingesetzten Software und Techniken berechnet und um Ähnlichkeiten zwischen Klassen und Beziehungen der Ontologie ergänzt~\cite[S.~9--10]{Jung2023}.
+Die Gewichte der einzelnen Elemente legen die Nutzer nach eigenem Urteil fest~\cite[S.~23]{Jung2023}.
+Empfohlen werden die Sicherheitsanforderungen der ähnlichsten Fälle, und die Nutzer entscheiden, ob sie diese übernehmen oder anpassen~\cite[S.~23]{Jung2023}.
+Gelöste Probleme werden als neue Fälle ergänzt, sodass die Fallbasis mit der Nutzung wächst~\cite[S.~1]{Jung2023}.
+Bewertet wird der Ansatz über Fallstudien und einen Fragebogen, den Sicherheitsexperten nach einer Schulung zum Verfahren beantwortet haben~\cite[S.~23]{Jung2023}.
+
+Erfani und Cui übertragen den Gedanken der Wiederverwendung auf die Risk Registers großer Verkehrsprojekte~\cite[S.~1]{Erfani2022}.
+Sie gehen davon aus, dass die Identifikation von Risiken bislang vor allem auf Experten beruht, zeitaufwendig ist und durch subjektive Urteile verzerrt werden kann~\cite[S.~1]{Erfani2022}.
+Grundlage sind Risk Registers aus 70 Projekten mit mehr als 6000 Risiken, die unter anderem Name, Beschreibung, Bewertung und Behandlung eines Risikos enthalten~\cite[S.~3--4]{Erfani2022}.
+Jedes Risiko wird nach einer Vorverarbeitung als Mittelwert der Wortvektoren seines Textes dargestellt, und Risiken mit einer Kosinus-Ähnlichkeit von mindestens 70\,\% werden zu Gruppen zusammengefasst~\cite[S.~4]{Erfani2022}.
+Für mehr als 81,1\,\% der Risiken in fünf Testprojekten fand sich in mindestens einem früheren Projekt dasselbe Risiko~\cite[S.~8]{Erfani2022}.
+Bei der Bewertung legen die Autoren besonderes Gewicht auf den Recall, da übersehene Risiken hohe Kosten verursachen, und erreichen insgesamt einen Recall von 66,4\,\% bei einer Precision von 53,4\,\%~\cite[S.~8]{Erfani2022}.
+Einschränkend standen den Autoren nur frühe und zwischenzeitlich aktualisierte Fassungen der Registers zur Verfügung, nicht deren letzte Fassung~\cite[S.~3]{Erfani2022}.
+
+Die drei Arbeiten übernehmen jeweils unterschiedliche Ergebnisse aus ähnlichen Fällen, nämlich eine Risikostufe~\cite[S.~29]{Hwang2004}, Sicherheitsanforderungen~\cite[S.~23]{Jung2023} oder Risiken früherer Projekte~\cite[S.~1]{Erfani2022}.
+Bei Hwang et al.\ und bei Jung und Lee werden die Gewichte der Ähnlichkeit von Menschen festgelegt~\cites[S.~28]{Hwang2004}[S.~23]{Jung2023}.
+Arbeiten, die gezielt Kontrollen für neue Systeme oder Risiken empfehlen, werden im folgenden Abschnitt~\ref{sec:rw-controls} vorgestellt.
+
+\section{Automatisierte Zuordnung von Kontrollen}\label{sec:rw-controls}
+Dieser Abschnitt stellt Arbeiten vor, die Organisationen bei der Auswahl oder Zuordnung von Sicherheitskontrollen unterstützen.
+Zunächst werden optimierungsbasierte Ansätze beschrieben, anschließend ein Ansatz, der aus historischen Sicherheitsbewertungen lernt, und zuletzt ein textbasiertes Empfehlungssystem mit kalibrierter Einschätzung.
+
+Ein Teil der Arbeiten behandelt die Auswahl von Kontrollen als Optimierungsproblem.
+Almeida und Respício gehen davon aus, dass die Auswahl Wissen über die vorhandenen Schwachstellen und Bedrohungen erfordert und zugleich wirtschaftliche Grenzen einhalten muss~\cite[S.~173]{Almeida2018}.
+Auf Grundlage der ISO/IEC 27001 und 27002 werden zunächst Schwachstellen identifiziert und anschließend mit einem ganzzahligen Optimierungsmodell die Kontrollen ausgewählt, die diese abdecken~\cite[S.~173]{Almeida2018}.
+Das Modell minimiert dabei zugleich die Kosten der Kontrollen und den erwarteten Verlust~\cite[S.~174]{Almeida2018}.
+Die Verluste je Schwachstelle werden als Schätzwerte eingegeben, und jede Schwachstelle muss von mindestens einer ausgewählten Kontrolle abgedeckt werden~\cite[S.~178]{Almeida2018}.
+Der Ansatz liegt als Prototyp vor, eine Validierung durch Sicherheitsverantwortliche ist erst geplant~\cite[S.~179]{Almeida2018}.
+Zhang et al.\ entwickeln Optimierungsmodelle, mit denen Kontrollen einer IT-Infrastruktur zugeteilt werden~\cite[S.~92]{Zhang2018}.
+Da Daten zu Sicherheitsvorfällen kaum verfügbar sind, werden die Wahrscheinlichkeiten von Sicherheitsverletzungen über Umfragen geschätzt~\cite[S.~92]{Zhang2018}.
+Um mögliche Schätzfehler zu berücksichtigen, ergänzen die Autoren ein deterministisches Modell um ein stochastisches~\cites[S.~92]{Zhang2018}[S.~102]{Zhang2018}.
+Bettaieb et al.\ ordnen solche Ansätze der Operations Research zu und halten fest, dass keiner von ihnen Daten aus früheren Risikobewertungen nutzt~\cite[S.~2555--2556]{Bettaieb2020}.
+
+Bettaieb et al.\ entwickeln ein Verfahren, das aus historischen Sicherheitsbewertungen einer Bank lernt und für ein neues System relevante Sicherheitskontrollen empfiehlt~\cite[S.~2550]{Bettaieb2020}.
+Nach Angabe der Autoren ist dies die erste Arbeit, die maschinelles Lernen auf historischen Daten zur Empfehlung von Kontrollen einsetzt~\cite[S.~2556]{Bettaieb2020}.
+Grundlage sind 255 von 320 Bewertungsprojekten aus zehn Jahren, wobei Kontrollen mit weniger als fünf Vorkommen ausgeschlossen werden und 83 Kontrollen der ISO/IEC 27002 verbleiben~\cite[S.~2564]{Bettaieb2020}.
+Die Merkmale wurden gemeinsam mit Sicherheitsexperten festgelegt und umfassen unter anderem Angaben zum Projekt, Antworten aus einem Sicherheitsfragebogen, Assets, Bedrohungen, Risikostufen und Schwachstellen~\cite[S.~2561--2563]{Bettaieb2020}.
+Das Verfahren setzt voraus, dass die Schritte vor der Auswahl der Kontrollen, etwa die Bestimmung von Bedrohungen und Schwachstellen, bereits abgeschlossen sind~\cite[S.~2559]{Bettaieb2020}.
+Da einem Projekt mehrere Kontrollen zugeordnet sein können, wird das Problem per Binary Relevance in je einen binären Klassifikator pro Kontrolle zerlegt~\cites[S.~2553--2554]{Bettaieb2020}[S.~2561]{Bettaieb2020}.
+Die Autoren beschränken sich auf interpretierbare Verfahren, da Experten Entscheidungen ohne Erklärung kaum akzeptieren würden~\cite[S.~2561--2563]{Bettaieb2020}.
+Verglichen werden unter anderem Naive Bayes, logistische Regression und mehrere Entscheidungsbaum- und Regelverfahren, wobei das starke Ungleichgewicht zwischen relevanten und nicht relevanten Kontrollen durch Über- und Unterabtastung oder kostensensitives Lernen ausgeglichen wird~\cites[S.~2554]{Bettaieb2020}[S.~2564--2565]{Bettaieb2020}.
+
+Bewertet wird über Precision und Recall, wobei der Recall Vorrang hat, damit keine wichtige Kontrolle übersehen wird~\cite[S.~2566]{Bettaieb2020}.
+Am besten schneidet ein Entscheidungsbaum (J48) mit kostensensitivem Lernen ab~\cite[S.~2570]{Bettaieb2020}.
+Je Projekt erreicht er einen Recall von 93,52\,\% und eine Precision von 63,12\,\%, bei im Mittel 8,9 Empfehlungen, von denen 5,6 zutreffen~\cite[S.~2571]{Bettaieb2020}.
+Die Merkmalsauswahl erfolgt dabei innerhalb der Bäume, sodass für verschiedene Kontrollen unterschiedliche Merkmale entscheidend sind, insgesamt am häufigsten Schwachstellen, Risiken und Bedrohungen~\cite[S.~2570--2571]{Bettaieb2020}.
+In Interviews bestätigen Experten, dass die Bäume verständlich sind, und merken an, dass fehlende Einflussfaktoren teilweise in unstrukturierten Texten enthalten wären~\cite[S.~2572--2575]{Bettaieb2020}.
+Die Autoren betonen zudem, dass auch die historischen Entscheidungen Fehler enthalten können und die Modelle daher als Unterstützung und nicht als Automatisierung zu verstehen sind~\cite[S.~2576]{Bettaieb2020}.
+Für die ausgeschlossenen seltenen Kontrollen sehen sie Bedarf an ergänzenden Verfahren wie dem fallbasierten Schließen~\cite[S.~2552, 2577]{Bettaieb2020}.
+
+Tasew et al.\ empfehlen Kontrollen des NIST SP 800-53 für Compliance-Audits, bei denen Betriebsnachweise wie Logs, Konfigurationsänderungen und Ticketnotizen den passenden Kontrollen zugeordnet werden müssen~\cite[S.~1]{Tasew2026}.
+Dazu kombinieren sie eine lexikalische und eine semantische Textsuche mit einem nachgelagerten Neuranking der Kandidaten~\cite[S.~2]{Tasew2026}.
+Die Bewertungen werden per isotonischer Regression in kalibrierte Wahrscheinlichkeiten überführt und mit der ECE und Reliability-Kurven geprüft~\cite[S.~2]{Tasew2026}.
+Ein zusätzliches Modell bestimmt, ob ein bis drei Kontrollen vorgeschlagen werden, und unterdrückt Vorschläge mit zu geringer Einschätzung~\cite[S.~2]{Tasew2026}.
+Die Daten umfassen 1561 synthetisch erzeugte Nachweise zu 34 Kontrollen aus zehn Kontrollfamilien, von denen 354 als Testmenge dienen~\cites[S.~7]{Tasew2026}[S.~11]{Tasew2026}.
+Auf der Testmenge steht in 84,18\,\% der Fälle die richtige Kontrolle an erster Stelle, und in 94,2\,\% der Fälle ist mindestens eine richtige Kontrolle unter den ersten drei Vorschlägen~\cite[S.~1]{Tasew2026}.
+Die Kalibrierung senkt die ECE auf der Entwicklungsmenge von 0,008 auf nahezu 0, ohne die Genauigkeit merklich zu verändern~\cite[S.~13, 16]{Tasew2026}.
+Die Autoren begründen den Nutzen der Kalibrierung damit, dass Vorschläge anhand ihrer Einschätzung in automatisch angenommene, manuell zu prüfende und unsichere Vorschläge eingeteilt werden können~\cite[S.~16]{Tasew2026}.
+Als Einschränkung nennen sie, dass die Daten synthetisch sind und reale Compliance-Programme deutlich mehr Kontrollen und Arten von Nachweisen umfassen~\cite[S.~18]{Tasew2026}.
+Zudem könne das Ranking bestimmte Kontrollfamilien bevorzugen, weil es die Verteilung der Trainingsdaten widerspiegelt, weshalb die Verteilung der Vorschläge über die Kontrollkategorien geprüft werden sollte~\cite[S.~20]{Tasew2026}.
+
+Die vorgestellten Arbeiten unterscheiden sich vor allem in ihren Eingaben.
+Die optimierungsbasierten Ansätze stützen sich auf geschätzte Verluste und Wahrscheinlichkeiten~\cites[S.~178]{Almeida2018}[S.~92]{Zhang2018}.
+Bettaieb et al.\ nutzen strukturierte Daten früherer Bewertungen~\cite[S.~2559--2563]{Bettaieb2020}.
+Tasew et al.\ arbeiten dagegen mit Texten~\cite[S.~1]{Tasew2026}.
+Nur Tasew et al.\ geben zu ihren Empfehlungen eine kalibrierte Einschätzung an~\cite[S.~2]{Tasew2026}.
+Abschnitt~\ref{sec:rw-abgrenzung} ordnet die eigene Arbeit gegenüber den vorgestellten Ansätzen ein.
+
+\section{Einordnung der eigenen Arbeit}\label{sec:rw-abgrenzung}
+Tabelle~\ref{tab:rw-vergleich} fasst die in diesem Kapitel vorgestellten Arbeiten zusammen und stellt ihnen die vorliegende Arbeit gegenüber.
+Verglichen werden die verwendeten Daten, das Ergebnis, das Verfahren und ob zu den Ergebnissen eine Einschätzung angegeben wird.
+
+\begin{table}[htbp]
+  \centering
+  \small
+  \caption{Vergleich der vorgestellten Arbeiten mit der eigenen Arbeit (\enquote{\textendash}: in der Arbeit nicht angegeben)}\label{tab:rw-vergleich}
+  \begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash\hspace{0pt}}p{2.4cm}
+                                  >{\raggedright\arraybackslash\hspace{0pt}}X
+                                  >{\raggedright\arraybackslash\hspace{0pt}}X
+                                  >{\raggedright\arraybackslash\hspace{0pt}}X
+                                  >{\raggedright\arraybackslash\hspace{0pt}}p{2.0cm}@{}}
+    \toprule
+    Arbeit & Daten & Ergebnis & Verfahren & Einschätzung \\
+    \midrule
+    Lo und Chen~\cite{Lo2012}
+      & Expertenurteile
+      & Risikostufen, Prioritäten für Schutzmaßnahmen
+      & Fuzzy-Methoden, DEMATEL, ANP
+      & \textendash{} \\
+    Abbas et al.~\cite{Abbas2025}
+      & synthetische Daten (IIoT)
+      & Vorhersage und Priorisierung von Risiken
+      & XGBoost u.\,a., föderiertes Lernen
+      & \textendash{} \\
+    Hwang et al.~\cite{Hwang2004}
+      & Prüfungsfälle mit Attributen auf Fünferskala
+      & Kontrollrisikostufe des ähnlichsten Falls
+      & gewichtete euklidische Distanz, Gewichte von Prüfern (AHP)
+      & \textendash{} \\
+    Jung und Lee~\cite{Jung2023}
+      & APT-Szenarien in einer Ontologie
+      & Sicherheitsanforderungen ähnlicher Fälle
+      & Jaccard-Ähnlichkeit, Gewichte von Nutzern
+      & \textendash{} \\
+    Erfani und Cui~\cite{Erfani2022}
+      & Texte aus 70 Risk Registers
+      & Risiken früherer Projekte
+      & Kosinus-Ähnlichkeit auf Wortvektoren
+      & \textendash{} \\
+    Almeida und Respício~\cite{Almeida2018}
+      & geschätzte Verluste je Schwachstelle
+      & Portfolio von ISO/IEC-27002-Kontrollen
+      & ganzzahlige Optimierung
+      & \textendash{} \\
+    Zhang et al.~\cite{Zhang2018}
+      & geschätzte Wahrscheinlichkeiten aus Umfragen
+      & Zuteilung von Kontrollen auf eine IT-Infrastruktur
+      & deterministische und stochastische Optimierung
+      & \textendash{} \\
+    Bettaieb et al.~\cite{Bettaieb2020}
+      & strukturierte Daten aus 255 Bewertungsprojekten
+      & ISO/IEC-27002-Kontrollen je Projekt
+      & Entscheidungsbaum je Kontrolle, Merkmale von Experten
+      & \textendash{} \\
+    Tasew et al.~\cite{Tasew2026}
+      & 1561 synthetische Textnachweise
+      & ein bis drei NIST-SP-800-53-Kontrollen % chktex 8
+      & Textsuche mit Neuranking
+      & kalibriert, über ECE geprüft \\
+    \midrule
+    Diese Arbeit
+      & Attribute eines realen Risk Registers, Freitexte als Kategorien
+      & drei Kontrollfamilien je Risiko
+      & Nächste Nachbarn und k-Medoids über gewichtete Gower-Distanz, Ähnlichkeit über GRANDE; Gewichte aus den Daten
+      & Anteil ähnlicher Risiken, über ECE geprüft \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+Die vorliegende Arbeit verbindet die Wiederverwendung ähnlicher Fälle aus Abschnitt~\ref{sec:rw-reuse} mit der Empfehlung von Kontrollen aus Abschnitt~\ref{sec:rw-controls}.
+Wie Bettaieb et al.\ nutzt sie bereits durchgeführte Bewertungen, um für neue Fälle Kontrollen vorzuschlagen.
+Statt je Kontrolle einen Klassifikator zu trainieren, werden jedoch ähnliche, bereits bewertete Risiken gesucht und deren Kontrollfamilien übernommen.
+Damit greift sie das fallbasierte Schließen auf, das Bettaieb et al.\ für seltene Kontrollen als Ergänzung vorschlagen~\cite[S.~2577]{Bettaieb2020}.
+Empfohlen werden keine einzelnen Kontrollen, sondern Kontrollfamilien, wie sie auch Lo und Chen als Kriterien statt einzelner Kontrollen verwenden~\cite[S.~248--249]{Lo2012}.
+
+Wie bei Hwang et al.\ und Jung und Lee werden die Attribute für die Ähnlichkeit unterschiedlich gewichtet.
+Die Gewichte stammen hier jedoch nicht von Experten oder Nutzern, sondern werden mit GRANDE aus den Trainingsdaten bestimmt.
+Wie Tasew et al.\ gibt die Arbeit zu jeder Empfehlung eine Einschätzung an und prüft deren Kalibrierung über die ECE, allerdings auf strukturierten Attributen realer Registerdaten statt auf synthetischen Texten.
+Während Bettaieb et al.\ voraussetzen, dass die Bewertungsschritte vor der Auswahl der Kontrollen abgeschlossen sind~\cite[S.~2559]{Bettaieb2020}, untersucht diese Arbeit zusätzlich, wie sich unvollständige Attribute in der Entwurfsphase auf die Empfehlungen auswirken.
+
+Der Beitrag der Arbeit liegt damit weniger in einem neuen Verfahren als in einem systematischen Vergleich mehrerer ähnlichkeitsbasierter Verfahren auf realen Daten eines Risk Registers.
+Untersucht wird, ob sich Kontrollfamilien allein über die Attribute bereits bewerteter Risiken empfehlen lassen, wie verlässlich die angegebene Einschätzung ist und wie robust die Empfehlungen gegenüber fehlenden Angaben sind.

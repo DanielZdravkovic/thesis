@@ -94,14 +94,14 @@ Entweder indem numerische Attribute in Klassen eingeteilt oder kategoriale Attri
 Beide Wege führen jedoch zu Informationsverlust oder lassen die Dimensionen der Daten stark ansteigen~\cites[S.~82--84]{Foss2019}[S.~7]{Tarsitano2011}.
 Stattdessen lassen sich Distanzmaße verwenden, die jeden Attributtypen passend behandeln und die Ergebnisse anschließend zusammenführen~\cite[S.~3]{Velden2019}.
 
-Das bekannteste Maß dieser Art geht auf Gower zurück und gilt als Standard für gemischte Daten~\cites[s.~3]{Velden2019}[S.~89]{Foss2019}.
+Ein bekanntes Maß dieser Art geht auf Gower zurück und gilt als Standard für gemischte Daten~\cites[s.~3]{Velden2019}[S.~89]{Foss2019}.
 Für zwei Risiken $r$ und $s$ wird zunächst für jedes Attribut $j$ eine Einzeldistanz $d_j(r,s) \in [0,1]$ bestimmt, die vom Typ des Attributs abhängt.
 Bei kategorialen Attirbuten is sie $0$, wenn die Werte übereinstimmen und sonst $1$.
 Bei numerischen Attributen wird der Betrag der Differenz durch die Spannweite $R_j$ des Attributs geteilt:
 \[
 d_j(r,s) = \frac{|x_{r,j} - x_{s,j}|}{R_j}.
 \]
-Die Gower-Distanz ist der Mittelwert diese Einzeldistanzen,
+Die Gower-Distanz ist der Mittelwert dieser Einzeldistanzen,
 \[
 d(r,s) = \frac{1}{m} \sum_{j=1}^{m} d_j(r,s)
 \]
@@ -122,7 +122,7 @@ ergibt sich die Distanz als Mittelwert über die gemeinsam vorhandenen Attribute
 d(r,s) = \frac{\sum_{j=1}^{m} \delta_j(r,s)\, d_j(r,s)}{\sum_{j=1}^{m} \delta_j(r,s)}
 \]
 ~\cites[S.~5--6]{DOrazio2021}[S.~8]{Tarsitano2011}.
-Haben zwei Risiken kein gemeinsames Attribut, ist die Distanz nicht definiert~\cite[S.~6]{DOrazio2021}
+Haben zwei Risiken kein gemeinsames Attribut, ist die Distanz nicht definiert~\cite[S.~6]{DOrazio2021}.
 
 Ungewichtet tragen die Attributtypen nicht gleichmäßig zur Gesamtdistanz bei.
 Kategoriale Attribute erreichen bereits bei jeder Abweichung den Höchstwert $1$, numerische dagegen nur bei maximalem Abstand.
@@ -192,7 +192,7 @@ Die Silhouette ist dann
 \]
 wobei Werte nahe 1 eine gute Zuordnung anzeigen~\cite[S.~56]{Rousseeuw1987}.
 Gewählt wird das $K$ mit der größten mittleren Silhouette~\cite[S.~53]{Rousseeuw1987}.
-Ein hoher Wert ist allerdings vorsichtig zu deuten, da etwa schon ein einzelner weit entfernter Ausreißer eine scheinbar starke Gruppenstruktur erzeugt~\cite[S.~60]{Rousseeuw1987}.
+Ein hoher Wert ist allerdings vorsichtig zu deuten, da schon ein einzelner weit entfernter Ausreißer eine scheinbar starke Gruppenstruktur erzeugt~\cite[S.~60]{Rousseeuw1987}.
 
 Als Vergleichsmaßstab dient eine Baseline, die jedem neuen Risiko unabhängig von seinen Attributen die in $T$ häufigsten Familien empfiehlt.
 Die Einschätzung ist hier der Anteil der Risiken in $T$, denen die Familie zugeordnet ist.
@@ -214,7 +214,7 @@ Precision@$k$ ist der Anteil zutreffender Familien unter den $k$ Vorschlägen, R
 Beide Werte werden je Risiko berechnet und anschließend über alle bewerteten Risiken gemittelt~\cite[S.~1749]{Krichene2020}.
 
 Eine Einschätzung ist gut kalibriert, wenn sie der beobachteten Häufigkeit entspricht.
-Wird etwa für viele Fälle eine Wahrscheinlichkeit von 70\,\% angegeben, sollte das Ereignis in etwa 70\,\% dieser Fälle eintreten~\cite[S.~2]{Pavlovic2025}.
+Wird für viele Fälle eine Wahrscheinlichkeit von 70\,\% angegeben, sollte das Ereignis in ca. 70\,\% dieser Fälle eintreten~\cite[S.~2]{Pavlovic2025}.
 Da die Einschätzung stetig ist, lässt sich die Kalibrierung mit endlich vielen Daten nur näherungsweise messen, indem die Vorhersagen in $M$ Intervalle $B_1, \dots, B_M$ eingeteilt werden~\cite[S.~7]{Wang2025}.
 Ein verbreitetes Maß ist der erwartete Kalibrierungsfehler (engl.~\emph{expected calibration error}, ECE)~\cite[S.~5]{Pavlovic2025}.
 Er ist das gewichtete Mittel der Abstände zwischen Trefferquote und mittlerer Einschätzung je Intervall~\cites[S.~7]{Wang2025}[S.~3]{Pavlovic2025}:
